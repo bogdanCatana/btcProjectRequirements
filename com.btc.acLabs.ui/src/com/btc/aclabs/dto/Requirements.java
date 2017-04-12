@@ -8,13 +8,13 @@ public class Requirements {
 	private String longDescription;
 	private Date creationDate;
 	private Date lastModifiedDate;
-	public Requirements(String n, String sd, String ld, Date date){
+	public Requirements(String n, String sd, String ld){
 		name = n;
 		shortDescription = sd;
 		longDescription = ld;
-		creationDate = date;
+		creationDate = new Date();
 		//at the creation of the requirement the last modified date is the same as the creation one
-		lastModifiedDate = date;
+		lastModifiedDate = new Date();
 	}
 	public String getName(){
 		return name;
@@ -42,8 +42,8 @@ public class Requirements {
 		return lastModifiedDate;
 	}
 	//this should be used for the edit option
-	public void setLastModfiedDate(Date newLastModifiedDate){
-		lastModifiedDate = newLastModifiedDate;
+	public void setLastModfiedDate(){
+		lastModifiedDate = new Date();
 	}
 	public String toString(){
 		return "" + name + "\n" + shortDescription + "\n" + longDescription + "\n" + creationDate + "\n" + lastModifiedDate;

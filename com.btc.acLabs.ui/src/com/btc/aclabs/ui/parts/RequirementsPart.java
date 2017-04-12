@@ -1,7 +1,6 @@
 package com.btc.aclabs.ui.parts;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
@@ -47,8 +45,9 @@ public class RequirementsPart {
 	private GridData gridData;
 	// list use for display with arrows
 	private RightLeftList displayList;
+	//filling label for empty cell
+	private Label fillingLabel;
 	
-	private DateTime date;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -63,9 +62,9 @@ public class RequirementsPart {
 		textShortDescription = new Text(parent, SWT.BORDER);
 		labelLongDescription = new Label(parent, SWT.NONE);
 		textLongDescription = new Text(parent, SWT.BORDER);
-		date = new DateTime(parent, SWT.BORDER);
-		buttonDisplay = new Button(parent, SWT.NONE);
 		buttonAdd = new Button(parent, SWT.NONE);
+		buttonDisplay = new Button(parent, SWT.NONE);
+		fillingLabel = new Label(parent, SWT.NONE);
 		buttonLeft = new Button(parent, SWT.NONE);
 		outTextArrows = new Text(parent, SWT.MULTI | SWT.BORDER);
 		buttonRight = new Button(parent, SWT.NONE);
@@ -103,8 +102,7 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (e.keyCode == SWT.CR) {
-					Date temp = new Date(date.getYear(), date.getMonth(), date.getDay());
-					requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText(), temp));
+					requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
 					displayList = new RightLeftList(requirementsList);
 					buttonRight.setEnabled(true);
 					buttonLeft.setEnabled(true);
@@ -119,8 +117,7 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				Date temp = new Date(date.getYear(), date.getMonth(), date.getDay());
-				requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText(), temp));
+				requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
 				displayList = new RightLeftList(requirementsList);
 				buttonRight.setEnabled(true);
 				buttonLeft.setEnabled(true);

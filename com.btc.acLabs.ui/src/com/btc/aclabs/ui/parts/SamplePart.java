@@ -1,5 +1,6 @@
 package com.btc.aclabs.ui.parts;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,6 +18,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+
+import com.btc.aclabs.dto.RightLeftList;
+import com.btc.aclabs.dto.Requirements;
 
 public class SamplePart {
 
@@ -36,6 +40,8 @@ public class SamplePart {
 			@Override
 			public void modifyText(ModifyEvent e) {
 				dirty.setDirty(true);
+				
+				searchAndDisplay();
 			}
 		});
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -43,7 +49,7 @@ public class SamplePart {
 		tableViewer = new TableViewer(parent);
 
 		tableViewer.setContentProvider(ArrayContentProvider.getInstance());;
-		tableViewer.setInput(createInitialDataModel());
+		tableViewer.setInput(RightLeftList.toList());
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 	}
 
@@ -55,6 +61,26 @@ public class SamplePart {
 	@Persist
 	public void save() {
 		dirty.setDirty(false);
+	}
+	
+	private void searchAndDisplay(){
+		List<Requirements> tmp = RightLeftList.getList();
+		List<String> stmp = new ArrayList<String>();
+		String toSearch = txtInput.getText();
+		
+		if(toSearch.isEmpty()){
+			tableViewer.setInput(RightLeftList.toList());
+		}else{
+		if(tmp==null){
+			tableViewer.setInput(Arrays.asList("There is no requirement yet.."));
+		}else{
+		for(Requirements i:tmp){
+			if(i.getName().contains(toSearch))
+				stmp.add(i.getName() + " " + i.getShortDescription());
+		}
+			tableViewer.setInput(stmp);
+		}
+		}
 	}
 	
 	private List<String> createInitialDataModel() {

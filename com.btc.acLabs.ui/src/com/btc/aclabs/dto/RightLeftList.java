@@ -1,11 +1,12 @@
 package com.btc.aclabs.dto;
 import java.util.List;
+import java.util.ArrayList;
 
 public class RightLeftList {
-	private List<Requirements> list = null;
+	private static List<Requirements> list = null;		//asta e deocamdata statica
 	private int elementCrt = -1;
 	public RightLeftList(List<Requirements>  list){
-		this.list = list;
+		RightLeftList.list = list;
 	}
 	//checks if the current element is valid
 	public boolean isValid(){
@@ -35,5 +36,19 @@ public class RightLeftList {
 			else
 				return list.get(elementCrt--);
 		return null;
+	}
+	//asta e pentru a cauta in lista de req
+	public static List<Requirements> getList(){
+		return list;
+	}
+	//asta e pentru a afisa in lista de requirementuri
+	public static List<String>toList(){
+		List<String>tmp = new ArrayList<String>();
+		if(list!=null)
+		for(Requirements i:list){
+			String stmp = i.getName() + " " + i.getShortDescription();
+			tmp.add(stmp);
+		}
+		return tmp;
 	}
 }

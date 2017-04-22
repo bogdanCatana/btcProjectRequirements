@@ -4,16 +4,12 @@
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_6wlLkMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.ide.perspectivestack">
       <children xsi:type="advanced:Perspective" xmi:id="_6wlLkcgZEeSyMNYR5xypkQ" elementId="com.btc.acLabs.ui.perspective.sample">
         <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="com.btc.acLabs.ui.partsashcontainer.sample" horizontal="true">
-          <children xsi:type="basic:PartSashContainer" xmi:id="_vpqyoB9VEeeUEuyTYGzF5w" elementId="com.btc.aclabs.ui.partsashcontainer.0">
-            <children xsi:type="basic:PartStack" xmi:id="_ASoI8B9WEeeUEuyTYGzF5w" elementId="com.btc.aclabs.ui.partstack.1">
-              <children xsi:type="basic:Part" xmi:id="_B5kRkB9WEeeUEuyTYGzF5w" elementId="com.btc.aclabs.ui.part.requirementslist" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.SamplePart" label="Requirements List"/>
-            </children>
-            <children xsi:type="basic:PartStack" xmi:id="_xGncUB9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.partstack.2">
-              <children xsi:type="basic:Part" xmi:id="_x7yw0B9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.part.requirementsdetails" label="Requirements Details"/>
-            </children>
+          <children xsi:type="basic:PartStack" xmi:id="_ASoI8B9WEeeUEuyTYGzF5w" elementId="com.btc.aclabs.ui.partstack.1">
+            <children xsi:type="basic:Part" xmi:id="_B5kRkB9WEeeUEuyTYGzF5w" elementId="com.btc.aclabs.ui.part.requirementslist" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.SamplePart" label="Requirements List"/>
           </children>
           <children xsi:type="basic:PartStack" xmi:id="_iYA54B9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.partstack.0">
             <children xsi:type="basic:Part" xmi:id="_jHufkB9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.part.addnewrequirements" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.RequirementsPart" label="Add New Requirements"/>
+            <children xsi:type="basic:Part" xmi:id="_x7yw0B9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.part.requirementsdetails" label="Requirements Details"/>
           </children>
         </children>
       </children>

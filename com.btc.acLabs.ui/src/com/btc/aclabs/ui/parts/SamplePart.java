@@ -1,3 +1,4 @@
+/*
 package com.btc.aclabs.ui.parts;
 
 import java.util.ArrayList;
@@ -87,3 +88,4 @@ public class SamplePart {
 		return Arrays.asList("Sample item 1", "Sample item 2", "Sample item 3", "Sample item 4", "Sample item 5");
 	}
 }
+*/

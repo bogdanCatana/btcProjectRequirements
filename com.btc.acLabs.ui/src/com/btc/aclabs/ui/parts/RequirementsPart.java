@@ -1,6 +1,5 @@
 package com.btc.aclabs.ui.parts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,12 +21,13 @@ import org.eclipse.swt.widgets.Text;
 
 import com.btc.aclabs.dto.Requirements;
 import com.btc.aclabs.dto.RightLeftList;
+import com.btc.aclabs.ui.services.RequirementsListManager;
 
 public class RequirementsPart {
 	// main shell
 	// labels, texts and buttons for adding requirements
 	private Label labelName;
-	private List<Requirements> requirementsList;
+	private RequirementsListManager reqList;
 	private Text textName;
 	private Label labelShortDescription;
 	private Text textShortDescription;
@@ -54,7 +54,7 @@ public class RequirementsPart {
 
 		parent.setLayout(new GridLayout(3, true));
 		// new objects
-		requirementsList = new ArrayList<Requirements>();
+		reqList = RequirementsListManager.getInstance();
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		labelName = new Label(parent, SWT.NONE);
 		textName = new Text(parent, SWT.BORDER);
@@ -102,8 +102,10 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (e.keyCode == SWT.CR) {
-					requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
-					displayList = new RightLeftList(requirementsList);
+					//requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+					reqList.addRequirement(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+					displayList = new RightLeftList(reqList.getRequirementsList());
+					
 					buttonRight.setEnabled(true);
 					buttonLeft.setEnabled(true);
 					// e.doit = false;
@@ -117,8 +119,8 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
-				displayList = new RightLeftList(requirementsList);
+				reqList.addRequirement(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+				displayList = new RightLeftList(reqList.getRequirementsList());
 				buttonRight.setEnabled(true);
 				buttonLeft.setEnabled(true);
 			}
@@ -137,8 +139,9 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				if (requirementsList.size() > 0)
-					for (Requirements idx : requirementsList)
+				List<Requirements> displayList = reqList.getRequirementsList();
+				if (reqList.getRequirementsList().size() > 0)
+					for (Requirements idx : displayList)
 						System.out.println(idx);
 				// show error in case of no requirements
 				else {
@@ -204,4 +207,5 @@ public class RequirementsPart {
 			}
 		});
 	}
+	 
 }

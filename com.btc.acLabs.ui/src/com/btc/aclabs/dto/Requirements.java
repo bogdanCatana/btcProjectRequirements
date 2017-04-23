@@ -46,6 +46,6 @@ public class Requirements {
 		lastModifiedDate = new Date();
 	}
 	public String toString(){
-		return "" + name + "\n" + shortDescription + "\n" + longDescription + "\n" + creationDate + "\n" + lastModifiedDate;
+		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;
 	}
 }

@@ -41,18 +41,9 @@ public class Requirements {
 	public Date getLastModifiedDate(){
 		return lastModifiedDate;
 	}
-	public void setCreationDate(String date)
-	{
-		creationDate=new Date(date);
-	}
 	//this should be used for the edit option
 	public void setLastModfiedDate(){
 		lastModifiedDate = new Date();
-	}
-	//used for setting date when importing from different types of files
-	public void setLastModifiedDate(String date)
-	{
-		lastModifiedDate=new Date(date);
 	}
 	public String toString(){
 		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;

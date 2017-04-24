@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import com.btc.aclabs.services.excel.Excel_Export;
 import com.btc.aclabs.services.excel.Excel_Interface;
-import com.btc.aclabs.services.excel.Import_Excel;
 
 public class Export_Import_Part {
 
@@ -25,7 +24,6 @@ public class Export_Import_Part {
 	private Button export_json;
 	private Button import_json;
 	private Excel_Interface excel_exp;
-	private Excel_Interface excel_imp;
 	
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -48,23 +46,8 @@ public class Export_Import_Part {
 			}
 		});
 		
-		excel_imp=new Import_Excel();
 		import_excel=new Button(parent,SWT.BORDER_DASH);
 		import_excel.setText("Import from Excel");
-		import_excel.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				excel_imp.read();
-				
-			}
-			
-			@Override
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		
 		export_csv=new Button(parent,SWT.BORDER_DASH);
 		export_csv.setText("Export to CSV");

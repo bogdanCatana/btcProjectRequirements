@@ -30,4 +30,8 @@ public class RequirementsListManager {
 	public List<Requirements> getRequirementsList(){
 		return requirementsList;
 	}
+	public void clearList()
+	{
+		this.requirementsList.clear();
+	}
 }

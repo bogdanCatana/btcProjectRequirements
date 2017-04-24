@@ -34,6 +34,14 @@ public class Import_Excel implements Excel_Interface{
 			}
 			else
 			{
+			if(r.getRequirementsList().isEmpty()==false)
+			{
+				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing list?","Warning!",JOptionPane.YES_NO_OPTION);
+				if(option==0)
+					r.clearList();
+					
+			}
+			
 			FileInputStream file = new FileInputStream(file_path + "\\" + file_name);
 			
 			

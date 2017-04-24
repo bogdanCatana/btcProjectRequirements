@@ -9,19 +9,20 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 import com.btc.aclabs.dto.Requirements;
 import com.btc.aclabs.ui.services.RequirementsListManager;
 
-public class Import_Excel implements Excel_Interface{
+public class Import_Excel {
 	
     private RequirementsListManager r=RequirementsListManager.getInstance();
-	public void read()
-	{
+    @Execute
+	public void execute(Shell shell) {
+	
 		try{
-			Shell shell=new Shell();
 			FileDialog dialog = new FileDialog(shell);
 			String [] extensions={"*.xlsx"};
 			dialog.setFilterExtensions(extensions);
@@ -100,6 +101,4 @@ public class Import_Excel implements Excel_Interface{
 		}
 	
 	
-	
-	public void write(){}
 }

@@ -5,6 +5,8 @@ import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -15,12 +17,13 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 
 import com.btc.aclabs.dto.Requirements;
 import com.btc.aclabs.ui.services.RequirementsListManager;
 
-public class Excel_Export implements Excel_Interface {
+public class Excel_Export  {
 	//Blank workbook
     private XSSFWorkbook workbook = new XSSFWorkbook(); 
      
@@ -30,7 +33,8 @@ public class Excel_Export implements Excel_Interface {
     private List<Requirements> list;
     private RequirementsListManager r=RequirementsListManager.getInstance();
     
-    public void write()
+    @Execute
+    public void execute()
     {
     	
     	try{
@@ -44,7 +48,7 @@ public class Excel_Export implements Excel_Interface {
     		else
     		{
     			Frame frame=new Frame();
-    			FileDialog fileDialog=new FileDialog(frame, "SAVE");
+    			FileDialog fileDialog=new FileDialog(frame, "Save",FileDialog.SAVE);
     			fileDialog.setVisible(true);
     			
     			String file_path=fileDialog.getDirectory();
@@ -55,59 +59,69 @@ public class Excel_Export implements Excel_Interface {
     			}
     			else
     			{
-	    			FileOutputStream out=new FileOutputStream(file_path + "\\" + file_name + ".xlsx");
-		    		
-	    			//first row which contains labels
-		    		Row detailsrow=sheet.createRow(0);
-		
-		    		Cell firstcell=detailsrow.createCell(0);
-		    		firstcell.setCellValue("No.");
-		    		
-		    		Cell secondcell=detailsrow.createCell(1);
-		    		secondcell.setCellValue("Name");
-		    		
-		    		Cell thirdcell=detailsrow.createCell(2);
-		    		thirdcell.setCellValue("Short description");
-		    		
-		    		Cell fourthcell=detailsrow.createCell(3);
-		    		fourthcell.setCellValue("Long description");
-		    		
-		    		Cell fifthcell=detailsrow.createCell(4);
-		    		fifthcell.setCellValue("Creation Date");
-		    		
-		    		Cell sixthcell=detailsrow.createCell(5);
-		    		sixthcell.setCellValue("Last modified Date");
-		    		
-		    		
-		    		
-		    		
-		    		int rownum=1;
-		    		for(int i=0;i<list.size();i++)
-		    		{
-		    			Row row = sheet.createRow(rownum++);
-		    			int cellnum=0;
-		    			
-		    			Cell no_cell=row.createCell(cellnum++);
-		    			no_cell.setCellValue((i+1));
-		    			
-		    			Cell name_cell=row.createCell(cellnum++);
-		    			name_cell.setCellValue(list.get(i).getName());
-		    			
-		    			Cell short_description_cell=row.createCell(cellnum++);
-		    			short_description_cell.setCellValue(list.get(i).getShortDescription());
-		    			
-		    			Cell long_description_cell=row.createCell(cellnum++);
-		    			long_description_cell.setCellValue(list.get(i).getLongDescription());
-		    			
-		    			Cell creation_date_cell=row.createCell(cellnum++);
-		    			creation_date_cell.setCellValue(list.get(i).getCreationDate().toLocaleString());
-		    			
-		    			Cell last_modified_date_cell=row.createCell(cellnum++);
-		    			last_modified_date_cell.setCellValue(list.get(i).getLastModifiedDate().toLocaleString());
-		    		}
-		    		workbook.write(out);
-		    		out.close();
-	    		}	
+    				File output=new File(file_path + "\\" + file_name + ".xlsx");
+    				int res=0;
+    				if(output.exists())
+    				{
+    					 res=JOptionPane.showConfirmDialog(null, "Do you want to overwrite?","Warning!",JOptionPane.YES_NO_OPTION);
+    				}
+    					if(res==0)
+    					{
+			    			FileOutputStream out=new FileOutputStream(output);
+			    			
+			    			//first row which contains labels
+				    		Row detailsrow=sheet.createRow(0);
+				
+				    		Cell firstcell=detailsrow.createCell(0);
+				    		firstcell.setCellValue("No.");
+				    		
+				    		Cell secondcell=detailsrow.createCell(1);
+				    		secondcell.setCellValue("Name");
+				    		
+				    		Cell thirdcell=detailsrow.createCell(2);
+				    		thirdcell.setCellValue("Short description");
+				    		
+				    		Cell fourthcell=detailsrow.createCell(3);
+				    		fourthcell.setCellValue("Long description");
+				    		
+				    		Cell fifthcell=detailsrow.createCell(4);
+				    		fifthcell.setCellValue("Creation Date");
+				    		
+				    		Cell sixthcell=detailsrow.createCell(5);
+				    		sixthcell.setCellValue("Last modified Date");
+				    		
+				    		
+				    		
+				    		
+				    		int rownum=1;
+				    		for(int i=0;i<list.size();i++)
+				    		{
+				    			Row row = sheet.createRow(rownum++);
+				    			int cellnum=0;
+				    			
+				    			Cell no_cell=row.createCell(cellnum++);
+				    			no_cell.setCellValue((i+1));
+				    			
+				    			Cell name_cell=row.createCell(cellnum++);
+				    			name_cell.setCellValue(list.get(i).getName());
+				    			
+				    			Cell short_description_cell=row.createCell(cellnum++);
+				    			short_description_cell.setCellValue(list.get(i).getShortDescription());
+				    			
+				    			Cell long_description_cell=row.createCell(cellnum++);
+				    			long_description_cell.setCellValue(list.get(i).getLongDescription());
+				    			
+				    			Cell creation_date_cell=row.createCell(cellnum++);
+				    			creation_date_cell.setCellValue(list.get(i).getCreationDate().toLocaleString());
+				    			
+				    			Cell last_modified_date_cell=row.createCell(cellnum++);
+				    			last_modified_date_cell.setCellValue(list.get(i).getLastModifiedDate().toLocaleString());
+				    		}
+				    		workbook.write(out);
+				    		out.close();
+    					}
+    				
+    			}
     		}
 	    	}catch(IOException e)
 	    	{
@@ -116,5 +130,5 @@ public class Excel_Export implements Excel_Interface {
     	
     
     }
-    public void read(){};
+  
 }

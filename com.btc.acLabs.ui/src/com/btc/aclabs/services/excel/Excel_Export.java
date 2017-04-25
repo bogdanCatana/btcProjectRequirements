@@ -119,6 +119,7 @@ public class Excel_Export  {
 				    		}
 				    		workbook.write(out);
 				    		out.close();
+				    		workbook.close();
     					}
     				
     			}

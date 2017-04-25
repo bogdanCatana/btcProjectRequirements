@@ -3,6 +3,8 @@ package com.btc.aclabs.services.excel;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
+
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -37,9 +39,12 @@ public class Import_Excel {
 			{
 			if(r.getRequirementsList().isEmpty()==false)
 			{
-				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing list?","Warning!",JOptionPane.YES_NO_OPTION);
+				
+				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing list?","Warning!",JOptionPane.YES_NO_CANCEL_OPTION);
 				if(option==0)
 					r.clearList();
+				if(option==2)
+					return;
 					
 			}
 			

@@ -2,19 +2,34 @@ package com.btc.aclabs.dto;
 
 import java.util.Date;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Requirements {
-	private String name;
-	private String shortDescription;
+	@Id
+	@GeneratedValue
+	private int id;
+	@Basic
+	private String name; //primary key 
+	@Basic
+	private String shortDescription;  //represented as a column in database
+	@Basic
 	private String longDescription;
+	@Basic
 	private Date creationDate;
+	@Basic
 	private Date lastModifiedDate;
+	
 	public Requirements(String n, String sd, String ld){
-		name = n;
-		shortDescription = sd;
-		longDescription = ld;
-		creationDate = new Date();
+		this.name = n;
+		this.shortDescription = sd;
+		this.longDescription = ld;
+		this.creationDate = new Date();
 		//at the creation of the requirement the last modified date is the same as the creation one
-		lastModifiedDate = new Date();
+		this.lastModifiedDate = new Date();
 	}
 	public String getName(){
 		return name;

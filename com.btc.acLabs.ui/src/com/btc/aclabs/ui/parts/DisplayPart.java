@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
+import com.btc.aclabs.dal.PersistenceUtility;
 import com.btc.aclabs.dto.Requirements;
 //import com.btc.aclabs.ui.services.DetailsTextManager;
 import com.btc.aclabs.ui.services.RequirementsListManager;
@@ -30,7 +31,7 @@ public class DisplayPart {
 	private List listView;
 	//used for layout
 	private GridData gridData;
-	private RequirementsListManager reqListDisplay;
+	private PersistenceUtility reqDataBase;
 	private Button refresh;
 	//private DetailsTextManager detailsText;
 	@Inject
@@ -39,8 +40,8 @@ public class DisplayPart {
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		reqListDisplay = RequirementsListManager.getInstance();
-		java.util.List<Requirements> fillList = reqListDisplay.getRequirementsList();
+		reqDataBase= PersistenceUtility.getInstance();
+		java.util.List<Requirements> fillList = reqDataBase.readAll();
 		
 		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Search...");
@@ -104,7 +105,9 @@ public class DisplayPart {
 		
 	}
 	//private method for filling the list, also used for refreshing
-	private void fillListView(java.util.List<Requirements> fillList){
+	public void fillListView(java.util.List<Requirements> fillList){
+		reqDataBase= PersistenceUtility.getInstance();
+		fillList=reqDataBase.readAll();
 		listView.removeAll();
 		for(Requirements idx : fillList)
 			listView.add(idx.getName());

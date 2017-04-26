@@ -47,6 +47,7 @@ public class RequirementsPart {
 	public void createComposite(Composite parent) {
 
 		parent.setLayout(new GridLayout(3, true));
+		reqDataBase=PersistenceUtility.getInstance();
 		// new objects
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		labelName = new Label(parent, SWT.NONE);
@@ -92,7 +93,6 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (e.keyCode == SWT.CR) {
-					//requirementsList.add(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
 					reqDataBase=PersistenceUtility.getInstance();
 					reqDataBase.create(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
 					

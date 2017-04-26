@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import com.btc.aclabs.dto.Requirements;
 
@@ -32,11 +33,20 @@ public class PersistenceUtility {
 		em.getTransaction().begin();
 		em.persist(r);
 		em.getTransaction().commit();
-		em.close();
+		//em.close();
 	}
 
 	public List<Requirements> readAll() {
 		List<Requirements> requirements = em.createQuery("SELECT r FROM Requirements r").getResultList();
 		return requirements;
+	}
+	public void clearDataBase()
+	{
+		this.em.getTransaction().begin();
+		List<Requirements> l=this.readAll();
+		for(int i=0;i<l.size();i++)
+			em.remove(l.get(i));
+		em.getTransaction().commit();
+		
 	}
 }

@@ -5,8 +5,6 @@ import java.awt.Frame;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -16,12 +14,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Shell;
 
+
+import com.btc.aclabs.dal.PersistenceUtility;
 import com.btc.aclabs.dto.Requirements;
-import com.btc.aclabs.ui.services.RequirementsListManager;
+
 
 public class Excel_Export  {
 	//Blank workbook
@@ -31,7 +28,7 @@ public class Excel_Export  {
     private XSSFSheet sheet = workbook.createSheet("Requirements Data");
     
     private List<Requirements> list;
-    private RequirementsListManager r=RequirementsListManager.getInstance();
+    private PersistenceUtility p=PersistenceUtility.getInstance();
     
     @Execute
     public void execute()
@@ -39,7 +36,7 @@ public class Excel_Export  {
     	
     	try{
 
-    		list=r.getRequirementsList();
+    		list=p.readAll();
     		if(list.isEmpty())
     		{
     			JOptionPane.showMessageDialog(null, "Nothing to export yet!");

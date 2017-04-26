@@ -61,7 +61,9 @@ public class DisplayPart {
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		listView = new List(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		listView.setLayoutData(gridData);
+		
 		fillListView(fillList);
+		
 		/* 
 		 * this should not be the only way to update the list because on the very long
 		 * ones this is inefficient
@@ -105,12 +107,13 @@ public class DisplayPart {
 		
 	}
 	//private method for filling the list, also used for refreshing
-	public void fillListView(java.util.List<Requirements> fillList){
+	private void fillListView(java.util.List<Requirements> fillList){
 		reqDataBase= PersistenceUtility.getInstance();
 		fillList=reqDataBase.readAll();
 		listView.removeAll();
 		for(Requirements idx : fillList)
 			listView.add(idx.getName());
+		
 	}
 
 	@Focus

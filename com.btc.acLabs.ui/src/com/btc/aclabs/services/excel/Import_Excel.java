@@ -15,12 +15,13 @@ import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
+import com.btc.aclabs.dal.PersistenceUtility;
 import com.btc.aclabs.dto.Requirements;
 import com.btc.aclabs.ui.services.RequirementsListManager;
 
 public class Import_Excel {
 	
-    private RequirementsListManager r=RequirementsListManager.getInstance();
+    private PersistenceUtility p=PersistenceUtility.getInstance();
     @Execute
 	public void execute(Shell shell) {
 	
@@ -37,12 +38,12 @@ public class Import_Excel {
 			}
 			else
 			{
-			if(r.getRequirementsList().isEmpty()==false)
+			if(p.readAll().isEmpty()==false)
 			{
 				
-				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing list?","Warning!",JOptionPane.YES_NO_CANCEL_OPTION);
+				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing DataBase?","Warning!",JOptionPane.YES_NO_CANCEL_OPTION);
 				if(option==0)
-					r.clearList();
+					p.clearDataBase();
 				if(option==2)
 					return;
 					
@@ -92,7 +93,7 @@ public class Import_Excel {
                    Requirements tmp=new Requirements(name,short_description,long_description);
                    tmp.setLastModifiedDate(last_modified_date);
                    tmp.setCreationDate(creation_date);
-                   r.addRequirement(tmp);
+                   p.create(tmp);
                             
               }
             file.close();

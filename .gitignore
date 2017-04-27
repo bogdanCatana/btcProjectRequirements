@@ -1,2 +1,4 @@
-#this should not upload any bin or Bin folder
+#this should not upload any bin/db/log folder
 [Bb]in/
+[Dd]b/
+[Ll]og/

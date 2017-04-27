@@ -33,15 +33,17 @@ public class DisplayPart {
 	private GridData gridData;
 	private PersistenceUtility reqDataBase;
 	private Button refresh;
+	private Button deleteReqButton;
 	//private DetailsTextManager detailsText;
 	@Inject
 	private MDirtyable dirty;
+	private java.util.List<Requirements> fillList;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
 		reqDataBase= PersistenceUtility.getInstance();
-		java.util.List<Requirements> fillList = reqDataBase.readAll();
+	    fillList = reqDataBase.readAll();
 		
 		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Search...");
@@ -58,12 +60,15 @@ public class DisplayPart {
 		refresh.setLayoutData(gridData);
 		refresh.setText("Refresh");
 		
+		deleteReqButton=new Button(parent,SWT.NONE);
+		deleteReqButton.setText("Delete");
+		deleteReqButton.setEnabled(false);
+		
 		gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		listView = new List(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		listView.setLayoutData(gridData);
 		
 		fillListView(fillList);
-		
 		/* 
 		 * this should not be the only way to update the list because on the very long
 		 * ones this is inefficient
@@ -83,6 +88,20 @@ public class DisplayPart {
 			}
 		});
 		
+		deleteReqButton.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+					deleteReq();
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		listView.addSelectionListener(new SelectionListener() {
 			
@@ -96,6 +115,8 @@ public class DisplayPart {
 				Requirements aux = fillList.get(idx);
 				detailsText.setText(aux.toString());
 				*/
+				if(listView.isSelected(listView.getSelectionIndex())==true)
+					deleteReqButton.setEnabled(true);
 			}
 			
 			@Override
@@ -114,6 +135,14 @@ public class DisplayPart {
 		for(Requirements idx : fillList)
 			listView.add(idx.getName());
 		
+		deleteReqButton.setEnabled(false);
+	}
+	private void deleteReq()
+	{
+		if(listView.isSelected(listView.getSelectionIndex()))
+			reqDataBase.deleteRequirement(fillList.get(listView.getSelectionIndex()));
+		fillListView(fillList);
+		deleteReqButton.setEnabled(false);
 	}
 
 	@Focus

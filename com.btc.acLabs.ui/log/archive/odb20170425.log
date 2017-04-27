@@ -1,0 +1,165 @@
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:04:45 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5444@Robi
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:09:19 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 1-2)
+
+[2017-04-25 20:09:19 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 180@Robi
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:09:35 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5380@Robi
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:11:27 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 6076@Robi
+
+[2017-04-25 20:11:31 #2 type.registry] 
+New type com.btc.aclabs.dto.Requirements
+
+[2017-04-25 20:11:31 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:13:46 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 3-4)
+
+[2017-04-25 20:13:46 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 4568@Robi
+
+[2017-04-25 20:13:46 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:15:57 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5872@Robi
+
+[2017-04-25 20:15:57 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:18:19 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5992@Robi
+
+[2017-04-25 20:18:19 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:19:21 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5576@Robi
+
+[2017-04-25 20:19:21 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:25:35 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 10-10)
+
+[2017-04-25 20:25:35 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 6892@Robi
+
+[2017-04-25 20:25:35 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:25:47 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 1768@Robi
+
+[2017-04-25 20:25:47 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:26:27 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5228@Robi
+
+[2017-04-25 20:26:27 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:28:38 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 11-11)
+
+[2017-04-25 20:28:38 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5720@Robi
+
+[2017-04-25 20:28:38 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:29:02 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 12-12)
+
+[2017-04-25 20:29:02 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 2120@Robi
+
+[2017-04-25 20:29:02 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:31:57 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 13-13)
+
+[2017-04-25 20:31:57 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 484@Robi
+
+[2017-04-25 20:31:57 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:32:19 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 14-14)
+
+[2017-04-25 20:32:19 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 5012@Robi
+
+[2017-04-25 20:32:19 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:34:15 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 15-15)
+
+[2017-04-25 20:34:15 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 6896@Robi
+
+[2017-04-25 20:34:15 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:35:56 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 6308@Robi
+
+[2017-04-25 20:35:56 #2 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+
+------------------------------------------------------------------------------------------------------------------------
+
+[2017-04-25 20:37:15 #1 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' has been recovered (tr. 16-16)
+
+[2017-04-25 20:37:16 #2 store] 
+Database 'D:\btcProjectRequirements\com.btc.acLabs.ui\db\requirements.odb' is opened by 6524@Robi
+
+[2017-04-25 20:37:16 #3 type] 
+Type com.btc.aclabs.dto.Requirements is not enhanced.
+

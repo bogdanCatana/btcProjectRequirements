@@ -46,7 +46,13 @@ public class PersistenceUtility {
 		List<Requirements> l=this.readAll();
 		for(int i=0;i<l.size();i++)
 			em.remove(l.get(i));
-		em.getTransaction().commit();
+		this.em.getTransaction().commit();
 		
+	}
+	public void deleteRequirement(Requirements r)
+	{
+		this.em.getTransaction().begin();
+		this.em.remove(r);
+		this.em.getTransaction().commit();
 	}
 }

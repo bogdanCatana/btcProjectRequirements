@@ -23,6 +23,8 @@ public class Requirements {
 	@Basic
 	private Date lastModifiedDate;
 	
+	private static int count=0;
+	
 	public Requirements(String n, String sd, String ld){
 		this.name = n;
 		this.shortDescription = sd;
@@ -30,6 +32,7 @@ public class Requirements {
 		this.creationDate = new Date();
 		//at the creation of the requirement the last modified date is the same as the creation one
 		this.lastModifiedDate = new Date();
+		count++;
 	}
 	public String getName(){
 		return name;
@@ -71,5 +74,9 @@ public class Requirements {
 	}
 	public String toString(){
 		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;
+	}
+	public static int getNrofRequirements()
+	{
+		return count;
 	}
 }

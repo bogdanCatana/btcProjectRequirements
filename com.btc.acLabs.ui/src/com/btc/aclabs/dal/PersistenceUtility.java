@@ -37,7 +37,7 @@ public class PersistenceUtility {
 	}
 
 	public List<Requirements> readAll() {
-		List<Requirements> requirements = em.createQuery("SELECT r FROM Requirements r").getResultList();
+		List<Requirements> requirements = em.createQuery("SELECT r FROM com.btc.aclabs.dto.Requirements r").getResultList();
 		return requirements;
 	}
 	public void clearDataBase()

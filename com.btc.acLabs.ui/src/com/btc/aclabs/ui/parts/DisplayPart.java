@@ -139,6 +139,7 @@ public class DisplayPart {
 	}
 	private void deleteReq()
 	{
+		fillList=reqDataBase.readAll();
 		if(listView.isSelected(listView.getSelectionIndex()))
 			reqDataBase.deleteRequirement(fillList.get(listView.getSelectionIndex()));
 		fillListView(fillList);

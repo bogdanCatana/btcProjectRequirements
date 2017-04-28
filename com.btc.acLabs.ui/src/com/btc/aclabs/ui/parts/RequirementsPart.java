@@ -80,7 +80,7 @@ public class RequirementsPart {
 					buttonAdd.setEnabled(true);
 			}
 		});
-
+		
 		labelShortDescription.setText("Short description:");
 		textShortDescription.setLayoutData(gridData);
 

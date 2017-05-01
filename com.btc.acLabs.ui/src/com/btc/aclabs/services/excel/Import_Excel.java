@@ -1,5 +1,6 @@
 package com.btc.aclabs.services.excel;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -22,6 +23,7 @@ import com.btc.aclabs.ui.services.RequirementsListManager;
 public class Import_Excel {
 	
     private PersistenceUtility p=PersistenceUtility.getInstance();
+    private FileInputStream file;
     @Execute
 	public void execute(Shell shell) {
 	
@@ -38,18 +40,32 @@ public class Import_Excel {
 			}
 			else
 			{
-			if(p.readAll().isEmpty()==false)
-			{
-				
-				int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing DataBase?","Warning!",JOptionPane.YES_NO_CANCEL_OPTION);
-				if(option==0)
-					p.clearDataBase();
-				if(option==2)
+				File f=new File(file_path + "\\" + file_name);
+				if(f.exists()==false)
+				{
+					JOptionPane.showMessageDialog(null, "File does not exist!", "ERROR", 0, null);
 					return;
+				}
+				if(f.canWrite()==true)
+					 file = new FileInputStream(f);
+					else
+					{
+						JOptionPane.showMessageDialog(null, "File is read-only!","ERROR",0,null);
+						return;
+					}
+				if(p.readAll().isEmpty()==false)
+				{
+				
+					int option=JOptionPane.showConfirmDialog(null,"Do you want to overwrite the existing DataBase?","Warning!",JOptionPane.YES_NO_CANCEL_OPTION);
+					if(option==0)
+						p.clearDataBase();
+					if(option==2)
+						return;
 					
-			}
+				}
 			
-			FileInputStream file = new FileInputStream(file_path + "\\" + file_name);
+			
+			
 			
 			
 			//Create Workbook instance holding reference to .xlsx file

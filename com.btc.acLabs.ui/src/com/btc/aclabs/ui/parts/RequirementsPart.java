@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -66,6 +67,7 @@ public class RequirementsPart {
 		labelName.setText("Name:");
 		gridData.horizontalSpan = 2;
 		textName.setLayoutData(gridData);
+		textName.setMessage("Enter requirement name");
 		// setting enabled depending on text in the name label
 		textName.addModifyListener(new ModifyListener() {
 
@@ -83,9 +85,11 @@ public class RequirementsPart {
 		
 		labelShortDescription.setText("Short description:");
 		textShortDescription.setLayoutData(gridData);
+		textShortDescription.setMessage("Enter short description");
 
 		labelLongDescription.setText("Long description: ");
 		textLongDescription.setLayoutData(gridData);
+		textLongDescription.setMessage("Enter long description");
 		// the same functionality as the add button when "enter" is pressed
 		textLongDescription.addTraverseListener(new TraverseListener() {
 
@@ -109,6 +113,9 @@ public class RequirementsPart {
 				// TODO Auto-generated method stub
 				reqDataBase=PersistenceUtility.getInstance();
 				reqDataBase.create(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+				textName.setText("");
+				textLongDescription.setText("");
+				textShortDescription.setText("");
 
 			}
 
@@ -120,6 +127,10 @@ public class RequirementsPart {
 		});
 
 		
+	}
+	@Focus
+	public void setFocus() {
+		//textName.setFocus();
 	}
 	 
 }

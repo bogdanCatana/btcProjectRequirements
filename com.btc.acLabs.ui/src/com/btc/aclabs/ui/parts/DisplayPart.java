@@ -164,10 +164,7 @@ public class DisplayPart {
 		txtInput.setText("");
 	}
 
-	@Focus
-	public void setFocus() {
-		txtInput.setFocus();
-	}
+
 
 	@Persist
 	public void save() {

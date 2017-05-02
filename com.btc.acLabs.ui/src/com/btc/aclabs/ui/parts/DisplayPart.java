@@ -50,7 +50,19 @@ public class DisplayPart {
 		txtInput.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				dirty.setDirty(true);
+				//dirty.setDirty(true);
+				listView.removeAll();
+				for(Requirements i:reqDataBase.readAll())
+				{
+					if(i.getName().contains(txtInput.getText())){
+					
+					listView.add(i.getName());
+					
+					}
+				}
+				
+				if(txtInput.getText().equals(""))
+					fillListView(fillList);
 			}
 		});
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -115,8 +127,10 @@ public class DisplayPart {
 				Requirements aux = fillList.get(idx);
 				detailsText.setText(aux.toString());
 				*/
-				if(listView.isSelected(listView.getSelectionIndex())==true)
+				if(listView.isSelected(listView.getSelectionIndex())==true){
+					
 					deleteReqButton.setEnabled(true);
+				}
 			}
 			
 			@Override
@@ -132,18 +146,22 @@ public class DisplayPart {
 		reqDataBase= PersistenceUtility.getInstance();
 		fillList=reqDataBase.readAll();
 		listView.removeAll();
-		for(Requirements idx : fillList)
+		for(Requirements idx : fillList){
 			listView.add(idx.getName());
+		}
 		
 		deleteReqButton.setEnabled(false);
 	}
 	private void deleteReq()
 	{
 		fillList=reqDataBase.readAll();
-		if(listView.isSelected(listView.getSelectionIndex()))
-			reqDataBase.deleteRequirement(fillList.get(listView.getSelectionIndex()));
+		String name=listView.getItem(listView.getSelectionIndex());
+		for(Requirements i:fillList)
+			if(name.equals(i.getName()))
+				reqDataBase.deleteRequirement(i);	
 		fillListView(fillList);
 		deleteReqButton.setEnabled(false);
+		txtInput.setText("");
 	}
 
 	@Focus

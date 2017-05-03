@@ -1,4 +1,4 @@
-package com.btc.aclabs.dal;
+package com.btc.acLabs.dal.utils;
 //singleton class --only a single object can be created
 
 import java.util.List;
@@ -8,7 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import com.btc.aclabs.dto.Requirements;
+import com.btc.acLabs.bl.dmos.Requirement;
 
 public class PersistenceUtility {
 	private static PersistenceUtility instance;
@@ -16,7 +16,7 @@ public class PersistenceUtility {
 	private EntityManager em;
 
 	private PersistenceUtility() {
-		this.emf = Persistence.createEntityManagerFactory("$objectdb/db/requirements.odb");
+		this.emf = Persistence.createEntityManagerFactory("$objectdb/db/Requirement.odb");
 
 	}
 
@@ -29,27 +29,27 @@ public class PersistenceUtility {
 		return instance;
 	}
 
-	public void create(Requirements r) {
+	public void create(Requirement r) {
 		em.getTransaction().begin();
 		em.persist(r);
 		em.getTransaction().commit();
 		//em.close();
 	}
 
-	public List<Requirements> readAll() {
-		List<Requirements> requirements = em.createQuery("SELECT r FROM com.btc.aclabs.dto.Requirements r").getResultList();
-		return requirements;
+	public List<Requirement> readAll() {
+		List<Requirement> Requirement = em.createQuery("SELECT r FROM Object r WHERE r instanceof com.btc.acLabs.bl.dmos.Requirement").getResultList();
+		return Requirement;
 	}
 	public void clearDataBase()
 	{
 		this.em.getTransaction().begin();
-		List<Requirements> l=this.readAll();
+		List<Requirement> l=this.readAll();
 		for(int i=0;i<l.size();i++)
 			em.remove(l.get(i));
 		this.em.getTransaction().commit();
 		
 	}
-	public void deleteRequirement(Requirements r)
+	public void deleteRequirement(Requirement r)
 	{
 		this.em.getTransaction().begin();
 		this.em.remove(r);

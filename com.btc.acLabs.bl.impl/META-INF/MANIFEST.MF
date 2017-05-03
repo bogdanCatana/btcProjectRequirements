@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Impl
+Bundle-SymbolicName: com.btc.acLabs.bl.impl
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: com.btc.acLabs.bl;bundle-version="1.0.0"
+Import-Package: javax.persistence,
+ org.osgi.service.component.annotations;version="1.2.0"
+Service-Component: OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementServiceImpl.xml
+Bundle-ActivationPolicy: lazy
+Export-Package: com.btc.acLabs.bl.internal.dmos,
+ com.btc.acLabs.bl.internal.repository

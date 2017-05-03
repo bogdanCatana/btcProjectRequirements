@@ -15,14 +15,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
-import com.btc.aclabs.dal.PersistenceUtility;
-import com.btc.aclabs.dto.Requirements;
-//import com.btc.aclabs.ui.services.DetailsTextManager;
-import com.btc.aclabs.ui.services.RequirementsListManager;
-
-import org.eclipse.swt.widgets.List;
+import com.btc.acLabs.bl.dmos.Requirement;
+import com.btc.acLabs.bl.services.RequirementService;
 
 public class DisplayPart {
 	//text field for searching
@@ -31,38 +28,27 @@ public class DisplayPart {
 	private List listView;
 	//used for layout
 	private GridData gridData;
-	private PersistenceUtility reqDataBase;
 	private Button refresh;
 	private Button deleteReqButton;
 	//private DetailsTextManager detailsText;
 	@Inject
 	private MDirtyable dirty;
-	private java.util.List<Requirements> fillList;
+	private java.util.List<Requirement> fillList;
+	
+	@Inject
+	private RequirementService requirementService;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		reqDataBase= PersistenceUtility.getInstance();
-	    fillList = reqDataBase.readAll();
+	    fillList = requirementService.getAll();
 		
 		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Search...");
 		txtInput.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {
-				//dirty.setDirty(true);
-				listView.removeAll();
-				for(Requirements i:reqDataBase.readAll())
-				{
-					if(i.getName().contains(txtInput.getText())){
-					
-					listView.add(i.getName());
-					
-					}
-				}
-				
-				if(txtInput.getText().equals(""))
-					fillListView(fillList);
+				dirty.setDirty(true);
 			}
 		});
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -127,10 +113,8 @@ public class DisplayPart {
 				Requirements aux = fillList.get(idx);
 				detailsText.setText(aux.toString());
 				*/
-				if(listView.isSelected(listView.getSelectionIndex())==true){
-					
+				if(listView.isSelected(listView.getSelectionIndex())==true)
 					deleteReqButton.setEnabled(true);
-				}
 			}
 			
 			@Override
@@ -142,29 +126,31 @@ public class DisplayPart {
 		
 	}
 	//private method for filling the list, also used for refreshing
-	private void fillListView(java.util.List<Requirements> fillList){
-		reqDataBase= PersistenceUtility.getInstance();
-		fillList=reqDataBase.readAll();
+	private void fillListView(java.util.List<Requirement> fillList){
+		
+		fillList=requirementService.getAll();
 		listView.removeAll();
-		for(Requirements idx : fillList){
+		for(Requirement idx : fillList)
 			listView.add(idx.getName());
-		}
 		
 		deleteReqButton.setEnabled(false);
 	}
 	private void deleteReq()
 	{
+		// TODO: make delete work too
+		/*
 		fillList=reqDataBase.readAll();
-		String name=listView.getItem(listView.getSelectionIndex());
-		for(Requirements i:fillList)
-			if(name.equals(i.getName()))
-				reqDataBase.deleteRequirement(i);	
+		if(listView.isSelected(listView.getSelectionIndex()))
+			reqDataBase.deleteRequirement(fillList.get(listView.getSelectionIndex()));
 		fillListView(fillList);
 		deleteReqButton.setEnabled(false);
-		txtInput.setText("");
+		*/
 	}
 
-
+	@Focus
+	public void setFocus() {
+		txtInput.setFocus();
+	}
 
 	@Persist
 	public void save() {

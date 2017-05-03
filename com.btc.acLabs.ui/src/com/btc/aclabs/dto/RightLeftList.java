@@ -1,10 +1,12 @@
 package com.btc.aclabs.dto;
 import java.util.List;
 
+import com.btc.acLabs.bl.dmos.Requirement;
+
 public class RightLeftList {
-	private List<Requirements> list = null;
+	private List<Requirement> list = null;
 	private int elementCrt = -1;
-	public RightLeftList(List<Requirements>  list){
+	public RightLeftList(List<Requirement>  list){
 		this.list = list;
 	}
 	//checks if the current element is valid
@@ -23,12 +25,12 @@ public class RightLeftList {
 			return true;
 		return false;
 	}
-	public Requirements right(){
+	public Requirement right(){
 		if(isValidRight())
 			return list.get(++elementCrt);
 		return null;
 	}
-	public Requirements left(){
+	public Requirement left(){
 		if(isValidLeft())
 			if(elementCrt == 0)
 				return list.get(elementCrt);

@@ -1,4 +1,4 @@
-package com.btc.aclabs.dto;
+package com.btc.acLabs.bl.internal.dmos;
 
 import java.util.Date;
 
@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.btc.acLabs.bl.dmos.Requirement;
+
 @Entity
-public class Requirements {
+public class RequirementImpl implements Requirement {
 	@Id
 	@GeneratedValue
 	private int id;
@@ -23,21 +25,25 @@ public class Requirements {
 	@Basic
 	private Date lastModifiedDate;
 	
-	public Requirements(String n, String sd, String ld){
+	private static int count=0;
+	
+	public RequirementImpl(String n, String sd, String ld){
 		this.name = n;
 		this.shortDescription = sd;
 		this.longDescription = ld;
 		this.creationDate = new Date();
 		//at the creation of the requirement the last modified date is the same as the creation one
 		this.lastModifiedDate = new Date();
-
+		count++;
 	}
+
 	public String getName(){
 		return name;
 	}
 	public void setName(String newName){
 		name = newName;
 	}
+
 	public String getShortDescription(){
 		return shortDescription;
 	}
@@ -50,7 +56,6 @@ public class Requirements {
 	public void setLongDescription(String newLongDescription){
 		longDescription = newLongDescription;
 	}
-	//no set for creationDate as it shouldn't ever change
 	public Date getCreationDate(){
 		return creationDate;
 	}
@@ -73,5 +78,8 @@ public class Requirements {
 	public String toString(){
 		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;
 	}
-	
+	public static int getNrofRequirements()
+	{
+		return count;
+	}
 }

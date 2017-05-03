@@ -1,10 +1,8 @@
 package com.btc.aclabs.ui.parts;
 
-import java.util.List;
-
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
-import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -20,10 +18,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
-import com.btc.aclabs.dal.PersistenceUtility;
-import com.btc.aclabs.dto.Requirements;
-import com.btc.aclabs.dto.RightLeftList;
-import com.btc.aclabs.ui.services.RequirementsListManager;
+import com.btc.acLabs.bl.services.RequirementService;
 
 public class RequirementsPart {
 	// main shell
@@ -42,13 +37,14 @@ public class RequirementsPart {
 	// list use for display with arrows
 	//filling label for empty cell
 	private Label fillingLabel;
-	private PersistenceUtility reqDataBase;
+	
+	@Inject
+	private RequirementService requirementService;
 	
 	@PostConstruct
 	public void createComposite(Composite parent) {
 
 		parent.setLayout(new GridLayout(3, true));
-		reqDataBase=PersistenceUtility.getInstance();
 		// new objects
 		gridData = new GridData(GridData.FILL, GridData.CENTER, true, false);
 		labelName = new Label(parent, SWT.NONE);
@@ -67,7 +63,6 @@ public class RequirementsPart {
 		labelName.setText("Name:");
 		gridData.horizontalSpan = 2;
 		textName.setLayoutData(gridData);
-		textName.setMessage("Enter requirement name");
 		// setting enabled depending on text in the name label
 		textName.addModifyListener(new ModifyListener() {
 
@@ -82,14 +77,12 @@ public class RequirementsPart {
 					buttonAdd.setEnabled(true);
 			}
 		});
-		
+
 		labelShortDescription.setText("Short description:");
 		textShortDescription.setLayoutData(gridData);
-		textShortDescription.setMessage("Enter short description");
 
 		labelLongDescription.setText("Long description: ");
 		textLongDescription.setLayoutData(gridData);
-		textLongDescription.setMessage("Enter long description");
 		// the same functionality as the add button when "enter" is pressed
 		textLongDescription.addTraverseListener(new TraverseListener() {
 
@@ -97,10 +90,8 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (e.keyCode == SWT.CR) {
-					reqDataBase=PersistenceUtility.getInstance();
-					reqDataBase.create(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
 					
-					
+					requirementService.create(textName.getText(), textShortDescription.getText(), textLongDescription.getText());
 				}
 			}
 		});
@@ -111,12 +102,7 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				reqDataBase=PersistenceUtility.getInstance();
-				reqDataBase.create(new Requirements(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
-				textName.setText("");
-				textLongDescription.setText("");
-				textShortDescription.setText("");
-
+				requirementService.create(textName.getText(), textShortDescription.getText(), textLongDescription.getText());
 			}
 
 			@Override
@@ -127,10 +113,6 @@ public class RequirementsPart {
 		});
 
 		
-	}
-	@Focus
-	public void setFocus() {
-		//textName.setFocus();
 	}
 	 
 }

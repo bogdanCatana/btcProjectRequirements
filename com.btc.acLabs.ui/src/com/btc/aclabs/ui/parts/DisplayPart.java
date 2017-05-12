@@ -17,10 +17,10 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
-import com.btc.aclabs.dal.PersistenceUtility;
-import com.btc.aclabs.dto.Requirements;
-//import com.btc.aclabs.ui.services.DetailsTextManager;
-import com.btc.aclabs.ui.services.RequirementsListManager;
+import com.btc.acLabs.bl.dmos.Requirement;
+import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+
+
 
 import org.eclipse.swt.widgets.List;
 
@@ -31,19 +31,19 @@ public class DisplayPart {
 	private List listView;
 	//used for layout
 	private GridData gridData;
-	private PersistenceUtility reqDataBase;
 	private Button refresh;
 	private Button deleteReqButton;
 	//private DetailsTextManager detailsText;
 	@Inject
 	private MDirtyable dirty;
-	private java.util.List<Requirements> fillList;
+	@Inject
+	private RequirementRepository reqDataBase;
+	private java.util.List<Requirement> fillList;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		parent.setLayout(new GridLayout(1, false));
-		reqDataBase= PersistenceUtility.getInstance();
-	    fillList = reqDataBase.readAll();
+	    fillList = reqDataBase.getAll();
 		
 		txtInput = new Text(parent, SWT.BORDER);
 		txtInput.setMessage("Search...");
@@ -52,7 +52,7 @@ public class DisplayPart {
 			public void modifyText(ModifyEvent e) {
 				//dirty.setDirty(true);
 				listView.removeAll();
-				for(Requirements i:reqDataBase.readAll())
+				for(Requirement i:reqDataBase.getAll())
 				{
 					if(i.getName().contains(txtInput.getText())){
 					
@@ -142,11 +142,11 @@ public class DisplayPart {
 		
 	}
 	//private method for filling the list, also used for refreshing
-	private void fillListView(java.util.List<Requirements> fillList){
-		reqDataBase= PersistenceUtility.getInstance();
-		fillList=reqDataBase.readAll();
+	private void fillListView(java.util.List<Requirement> fillList){
+		//reqDataBase= PersistenceUtility.getInstance();
+		fillList=reqDataBase.getAll();
 		listView.removeAll();
-		for(Requirements idx : fillList){
+		for(Requirement idx : fillList){
 			listView.add(idx.getName());
 		}
 		
@@ -154,9 +154,9 @@ public class DisplayPart {
 	}
 	private void deleteReq()
 	{
-		fillList=reqDataBase.readAll();
+		fillList=reqDataBase.getAll();
 		String name=listView.getItem(listView.getSelectionIndex());
-		for(Requirements i:fillList)
+		for(Requirement i:fillList)
 			if(name.equals(i.getName()))
 				reqDataBase.deleteRequirement(i);	
 		fillListView(fillList);

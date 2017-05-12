@@ -1,4 +1,4 @@
-package com.btc.aclabs.services.excel;
+package com.btc.aclabs.ui.handlers;
 
 import java.awt.FileDialog;
 import java.awt.Frame;
@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.swing.JOptionPane;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -15,20 +16,20 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.e4.core.di.annotations.Execute;
 
+import com.btc.acLabs.bl.dmos.Requirement;
+import com.btc.acLabs.bl.internal.repository.RequirementRepository;
 
-import com.btc.aclabs.dal.PersistenceUtility;
-import com.btc.aclabs.dto.Requirements;
 
-
-public class Excel_Export  {
+public class Export_Excel_Handler {
 	//Blank workbook
     private XSSFWorkbook workbook = new XSSFWorkbook(); 
      
     //Create a blank sheet
     private XSSFSheet sheet = workbook.createSheet("Requirements Data");
     
-    private List<Requirements> list;
-    private PersistenceUtility p=PersistenceUtility.getInstance();
+    private List<Requirement> list;
+    @Inject
+    private RequirementRepository p;
     
     @Execute
     public void execute()
@@ -36,7 +37,7 @@ public class Excel_Export  {
     	
     	try{
 
-    		list=p.readAll();
+    		list=p.getAll();
     		if(list.isEmpty())
     		{
     			JOptionPane.showMessageDialog(null, "Nothing to export yet!");
@@ -128,5 +129,4 @@ public class Excel_Export  {
     	
     
     }
-  
 }

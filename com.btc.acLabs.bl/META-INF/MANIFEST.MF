@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Bl
+Bundle-SymbolicName: com.btc.acLabs.bl
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: BTC
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: com.btc.acLabs.bl.dmos,
+ com.btc.acLabs.bl.services
+Require-Bundle: org.eclipse.osgi.services

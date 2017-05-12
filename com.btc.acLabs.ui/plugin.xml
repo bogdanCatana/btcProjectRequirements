@@ -16,6 +16,10 @@
                name="appName"
                value="com.btc.acLabs.ui">
          </property>
+         <property
+               name="lifeCycleURL"
+               value="bundleclass://com.btc.aclabs.login.LogIn">
+         </property>
       </product>
    </extension>
 

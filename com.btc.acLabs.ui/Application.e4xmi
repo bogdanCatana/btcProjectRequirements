@@ -43,8 +43,8 @@
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="com.btc.aclabs.ui.handler.openCommand" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="com.btc.aclabs.ui.handler.saveCommand" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="com.btc.aclabs.ui.handler.aboutCommand" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_Cn0DACjrEeeLJZDvJwJhpQ" elementId="com.btc.aclabs.ui.handler.0" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.services.excel.Excel_Export" command="_-AaaECjqEeeLJZDvJwJhpQ"/>
-  <handlers xmi:id="_E7NB8CjrEeeLJZDvJwJhpQ" elementId="com.btc.aclabs.ui.handler.1" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.services.excel.Import_Excel" command="_A10g8CjrEeeLJZDvJwJhpQ"/>
+  <handlers xmi:id="_Cn0DACjrEeeLJZDvJwJhpQ" elementId="com.btc.aclabs.ui.handler.0" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.handlers.Export_Excel_Handler" command="_-AaaECjqEeeLJZDvJwJhpQ"/>
+  <handlers xmi:id="_E7NB8CjrEeeLJZDvJwJhpQ" elementId="com.btc.aclabs.ui.handler.1" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.handlers.Import_Excel_Handler" command="_A10g8CjrEeeLJZDvJwJhpQ"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="com.btc.acLabs.ui.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="com.btc.acLabs.ui.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="com.btc.acLabs.ui.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>

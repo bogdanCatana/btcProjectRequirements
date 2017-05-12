@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" immediate="true" name="com.btc.acLabs.bl.internal.services.RequirementServiceImpl">
+   <service>
+      <provide interface="com.btc.acLabs.bl.services.RequirementService"/>
+   </service>
+   <reference bind="setRequirementRepository" cardinality="1..1" interface="com.btc.acLabs.bl.internal.repository.RequirementRepository" name="RequirementRepository" policy="static"/>
+   <implementation class="com.btc.acLabs.bl.internal.services.RequirementServiceImpl"/>
+</scr:component>

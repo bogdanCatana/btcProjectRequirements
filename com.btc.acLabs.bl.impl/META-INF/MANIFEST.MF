@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Impl
+Bundle-SymbolicName: com.btc.acLabs.bl.impl
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: com.btc.acLabs.bl.dmos,
+ com.btc.acLabs.bl.services,
+ javax.persistence
+Require-Bundle: org.eclipse.osgi.services,
+ org.eclipse.e4.core.di.annotations
+Bundle-ActivationPolicy: lazy
+Service-Component: OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementServiceImpl.xml
+Export-Package: com.btc.acLabs.bl.internal.dmos,
+ com.btc.acLabs.bl.internal.repository,
+ com.btc.acLabs.bl.internal.services

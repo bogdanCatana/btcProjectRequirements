@@ -53,4 +53,12 @@ public class PersistenceUtility {
 		this.em.remove(r);
 		this.em.getTransaction().commit();
 	}
+	
+	public void updateRequirement(Requirement r)
+	{
+		this.em.getTransaction().begin();
+		this.em.merge(r);
+		this.em.getTransaction().commit();
+		
+	}
 }

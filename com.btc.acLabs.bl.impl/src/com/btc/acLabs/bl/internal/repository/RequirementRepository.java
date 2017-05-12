@@ -9,6 +9,10 @@ public interface RequirementRepository {
 	void create(Requirement requirement);
 
 	List<Requirement> getAll();
+	
 	void clearDataBase();
+	
 	void deleteRequirement(Requirement r);
+	
+	void updateRequirement(Requirement r);
 }

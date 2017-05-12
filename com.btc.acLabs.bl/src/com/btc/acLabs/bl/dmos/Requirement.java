@@ -13,4 +13,12 @@ public interface Requirement {
 	Date getCreationDate();
 
 	Date getLastModifiedDate();
+	
+	void setName(String newName);
+	
+	void setShortDescription(String newShortDescription);
+	
+	void setLongDescription(String newLongDescription);
+	
+	void setLastModifiedDate();
 }

@@ -69,6 +69,10 @@ public class RequirementImpl implements Requirement {
 		return lastModifiedDate;
 	}
 	
+	public void setLastModifiedDate()
+	{
+		this.lastModifiedDate=new Date();
+	}
 	public String toString(){
 		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;
 	}

@@ -37,6 +37,13 @@ public class RequirementRepositoryImpl implements RequirementRepository {
 		reqDataBase.deleteRequirement(r);
 		
 	}
+
+	@Override
+	public void updateRequirement(Requirement r) {
+		PersistenceUtility reqDataBase=PersistenceUtility.getInstance();
+		reqDataBase.updateRequirement(r);
+		
+	}
 	
 
 	

@@ -1,14 +1,26 @@
 package com.btc.aclabs.ui.parts;
 
+import java.awt.Component;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -140,7 +152,62 @@ public class DisplayPart {
 			}
 		});
 		
+		listView.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseUp(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDown(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseDoubleClick(MouseEvent e) {
+				if(listView.isSelected(listView.getSelectionIndex())==true){
+					
+					if(e.count==2)
+					{
+						JTextField name_field=new JTextField();
+						name_field.setEditable(true);
+						JTextField short_description_field=new JTextField();
+						short_description_field.setEditable(true);
+						JTextField long_description_field=new JTextField();
+						long_description_field.setEditable(true);
+						Object[] req_edit={
+								"Name: ",name_field,
+								"Short Description",short_description_field,
+								"Long Description",long_description_field
+						};
+						 int result = JOptionPane.showConfirmDialog(null, req_edit, "EDIT", JOptionPane.OK_CANCEL_OPTION);
+						 String req_name=listView.getItem(listView.getSelectionIndex());
+						 
+						 if(result == JOptionPane.OK_OPTION)
+						 {
+							 Requirement editable=null;
+							 fillList=reqDataBase.getAll();
+							 for(Requirement i:fillList)
+									if(req_name.equals(i.getName()))
+										editable=i;
+							editable.setName(name_field.getText());
+							editable.setShortDescription(short_description_field.getText());
+							editable.setLongDescription(long_description_field.getText());
+							editable.setLastModifiedDate();
+							reqDataBase.updateRequirement(editable);
+							fillListView(fillList);
+							 
+						 }
+					}
+				}
+				
+			}
+		});
 	}
+	
 	//private method for filling the list, also used for refreshing
 	private void fillListView(java.util.List<Requirement> fillList){
 		//reqDataBase= PersistenceUtility.getInstance();

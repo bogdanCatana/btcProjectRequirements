@@ -8,4 +8,8 @@ public interface RequirementService {
 	void create(String name, String shortDescription, String longDescription);
 
 	List<Requirement> getAll();
+	
+	void updateRequirement(Requirement r);
+	
+	void deleteRequirement(Requirement r);
 }

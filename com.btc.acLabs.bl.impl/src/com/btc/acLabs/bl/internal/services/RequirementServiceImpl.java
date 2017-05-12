@@ -32,4 +32,16 @@ public class RequirementServiceImpl implements RequirementService {
 	public void setRequirementRepository(RequirementRepository repository) {
 		this.requirementRepository = repository;
 	}
+
+	@Override
+	public void updateRequirement(Requirement r) {
+		requirementRepository.updateRequirement(r);
+		
+	}
+
+	@Override
+	public void deleteRequirement(Requirement r) {
+		requirementRepository.deleteRequirement(r);
+		
+	}
 }

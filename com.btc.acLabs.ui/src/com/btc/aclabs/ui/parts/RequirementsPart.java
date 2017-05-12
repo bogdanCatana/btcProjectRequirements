@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.btc.acLabs.bl.internal.dmos.RequirementImpl;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
-
+import com.btc.acLabs.bl.services.RequirementService;
 import com.btc.aclabs.dto.RightLeftList;
 
 
@@ -45,7 +45,7 @@ public class RequirementsPart {
 	//filling label for empty cell
 	private Label fillingLabel;
    @Inject
-   private RequirementRepository reqDataBase;
+   private RequirementService reqDataBase;
 	
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -100,7 +100,7 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (e.keyCode == SWT.CR) {
-					reqDataBase.create(new RequirementImpl(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+					reqDataBase.create(textName.getText(), textShortDescription.getText(), textLongDescription.getText());
 					
 					
 				}
@@ -113,7 +113,7 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				reqDataBase.create(new RequirementImpl(textName.getText(), textShortDescription.getText(), textLongDescription.getText()));
+				reqDataBase.create(textName.getText(), textShortDescription.getText(), textLongDescription.getText());
 				textName.setText("");
 				textLongDescription.setText("");
 				textShortDescription.setText("");

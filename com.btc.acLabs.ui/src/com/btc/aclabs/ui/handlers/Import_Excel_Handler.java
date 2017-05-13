@@ -19,11 +19,12 @@ import org.eclipse.swt.widgets.Shell;
 import com.btc.acLabs.bl.dmos.Requirement;
 import com.btc.acLabs.bl.internal.dmos.RequirementImpl;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+import com.btc.acLabs.bl.services.RequirementService;
 
 
 public class Import_Excel_Handler {
 	    @Inject
-	    private RequirementRepository p;
+	    private RequirementService p;
 	    private FileInputStream file;
 	    @Execute
 		public void execute(Shell shell) {

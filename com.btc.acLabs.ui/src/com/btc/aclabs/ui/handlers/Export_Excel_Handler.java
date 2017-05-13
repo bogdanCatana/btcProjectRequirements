@@ -17,7 +17,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.eclipse.e4.core.di.annotations.Execute;
 
 import com.btc.acLabs.bl.dmos.Requirement;
-import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+import com.btc.acLabs.bl.services.RequirementService;
 
 
 public class Export_Excel_Handler {
@@ -29,7 +29,7 @@ public class Export_Excel_Handler {
     
     private List<Requirement> list;
     @Inject
-    private RequirementRepository p;
+    private RequirementService p;
     
     @Execute
     public void execute()

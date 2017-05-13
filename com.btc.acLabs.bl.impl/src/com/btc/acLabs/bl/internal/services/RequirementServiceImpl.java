@@ -44,4 +44,16 @@ public class RequirementServiceImpl implements RequirementService {
 		requirementRepository.deleteRequirement(r);
 		
 	}
+
+	@Override
+	public void clearDataBase() {
+		requirementRepository.clearDataBase();
+		
+	}
+
+	@Override
+	public void create(Requirement req) {
+		requirementRepository.create(req);
+		
+	}
 }

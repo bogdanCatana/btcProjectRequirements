@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Text;
 import com.btc.acLabs.bl.dmos.Requirement;
 import com.btc.acLabs.bl.internal.dmos.RequirementImpl;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+import com.btc.acLabs.bl.services.RequirementService;
 
 
 public class RequirementsPart {
@@ -47,7 +48,7 @@ public class RequirementsPart {
 	private Combo comboDropDown;
 	private Label labelSubReq;
 	@Inject
-	private RequirementRepository reqDataBase;
+	private RequirementService reqDataBase;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -150,7 +151,7 @@ public class RequirementsPart {
 				// TODO Auto-generated method stub
 				Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
 						textLongDescription.getText());
-				reqDataBase.create(temp);
+				reqDataBase.create(temp.getName(), temp.getShortDescription(), temp.getLongDescription());
 				if (comboDropDown.getText() != "") {
 					setRelation(comboDropDown.getText(), temp.getId());
 					temp.setIsChild(true);
@@ -179,7 +180,7 @@ public class RequirementsPart {
 	//add on "enter" key - only on long description
 	private void enterAsAddEvent(TraverseEvent e, Requirement temp) {
 		if (e.keyCode == SWT.CR) {
-			reqDataBase.create(temp);
+			reqDataBase.create(temp.getName(), temp.getShortDescription(), temp.getLongDescription());
 			fillDropDown();
 			setEmptyTexts();
 		}

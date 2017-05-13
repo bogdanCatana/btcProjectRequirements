@@ -8,3 +8,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: com.btc.acLabs.bl.dmos,
  com.btc.acLabs.bl.services
 Require-Bundle: org.eclipse.osgi.services
+Import-Package: com.btc.acLabs.bl.internal.dmos

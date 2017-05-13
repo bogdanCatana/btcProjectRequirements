@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.btc.acLabs.bl.dmos.Requirement;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+import com.btc.acLabs.bl.services.RequirementService;
 
 import org.eclipse.swt.widgets.List;
 
@@ -39,7 +40,7 @@ public class DisplayPart {
 	@Inject
 	private MDirtyable dirty;
 	@Inject
-	private RequirementRepository reqDataBase;
+	private RequirementService reqDataBase;
 	private java.util.List<Requirement> fillList;
 
 	@PostConstruct

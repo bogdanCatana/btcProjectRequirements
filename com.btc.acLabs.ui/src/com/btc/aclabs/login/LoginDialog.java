@@ -3,6 +3,7 @@ package com.btc.aclabs.login;
 import javax.inject.Inject;
 
 import org.eclipse.e4.ui.model.application.MApplication;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -10,6 +11,7 @@ import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -21,6 +23,7 @@ public class LoginDialog extends TitleAreaDialog{
     private Text textPassword;
     private String user;
     private String pass;
+    private Button loginButton;
  
     @Inject
     MApplication application;
@@ -61,6 +64,10 @@ public class LoginDialog extends TitleAreaDialog{
 			@Override
 			public void modifyText(ModifyEvent e) {
 				user=textUsername.getText();
+				if(textUsername.getText().equals("") || textPassword.getText().equals(""))
+					loginButton.setEnabled(false);
+				else
+					loginButton.setEnabled(true);
 				
 				
 			}
@@ -70,6 +77,10 @@ public class LoginDialog extends TitleAreaDialog{
 			@Override
 			public void modifyText(ModifyEvent e) {
 				pass=textPassword.getText();
+				if(textPassword.getText().equals("") || textUsername.getText().equals(""))
+					loginButton.setEnabled(false);
+				else
+					loginButton.setEnabled(true);
 				
 			}
 		});
@@ -77,7 +88,11 @@ public class LoginDialog extends TitleAreaDialog{
         return area;
     }
     
- 
+    protected void createButtonsForButtonBar(Composite parent) {
+		loginButton=createButton(parent, IDialogConstants.OK_ID, "Login", true);
+        loginButton.setEnabled(false);
+		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
+	}
  
     @Override
     protected Point getInitialSize() {

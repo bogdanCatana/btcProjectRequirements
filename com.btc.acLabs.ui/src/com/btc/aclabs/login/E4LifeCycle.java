@@ -11,6 +11,7 @@ import org.eclipse.e4.ui.workbench.lifecycle.PostContextCreate;
 import org.eclipse.e4.ui.workbench.lifecycle.PreSave;
 import org.eclipse.e4.ui.workbench.lifecycle.ProcessAdditions;
 import org.eclipse.e4.ui.workbench.lifecycle.ProcessRemovals;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
@@ -50,11 +51,12 @@ public class E4LifeCycle {
 	        }
 	        else
 	        {
+	        	
 	        
 	        	 while(ok!=false)
 	 	        {
 		 	        ok=true;
-		 	        	
+		 	    
 		 	        for(User i:usersList)
 		 	        	if(dialog.getUser().equals(i.getName())==true && dialog.getPass().equals(i.getPassword())==true){
 		 	        		

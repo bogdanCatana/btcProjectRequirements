@@ -37,7 +37,9 @@ public class E4LifeCycle {
 		
 	        final Shell shell = new Shell(SWT.TOOL|SWT.NO_TRIM);
 	        LoginDialog dialog = new LoginDialog(shell);
-	        usersList =userService.getAll();
+			if(userService.getAll().isEmpty())
+				userService.create("admin", "admin");
+			 usersList =userService.getAll();
 	        ContextInjectionFactory.inject(dialog, workbenchContext);
 	        boolean ok=true;
 	        int x=0;

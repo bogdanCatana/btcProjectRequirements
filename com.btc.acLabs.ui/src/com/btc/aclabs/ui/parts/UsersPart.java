@@ -28,7 +28,6 @@ public class UsersPart {
 	public void createComposite(Composite parent) {
 		
 		parent.setLayout(new GridLayout(2, true));
-		
 		name_label = new Label(parent, SWT.NONE);
 		name_label.setText("User: ");
 		

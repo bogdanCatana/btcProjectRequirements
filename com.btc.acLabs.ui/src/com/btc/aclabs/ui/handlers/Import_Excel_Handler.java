@@ -71,7 +71,7 @@ public class Import_Excel_Handler {
 				
 				//Create Workbook instance holding reference to .xlsx file
 				XSSFWorkbook workbook = new XSSFWorkbook(file);
-				 
+				
 	            //Get first/desired sheet from the workbook
 	            XSSFSheet sheet = workbook.getSheetAt(0);
 	          //Iterate through each rows one by one
@@ -84,6 +84,7 @@ public class Import_Excel_Handler {
 	                Iterator<Cell> cellIterator = row.cellIterator();
 	                cellIterator.next();
 	                String name="",short_description="",long_description="",creation_date="",last_modified_date="";
+	                String parent = null;
 	                while (cellIterator.hasNext()) 
 	                {
 	                    Cell cell = cellIterator.next();
@@ -104,11 +105,19 @@ public class Import_Excel_Handler {
 	                    case 5:
 	                    	last_modified_date=cell.getStringCellValue();
 	                    	break;
+	                    case 6:
+	                    	parent = cell.getStringCellValue();
+	                    	break;
 	                    }
 	                    	
 	                }
 	                   Requirement tmp=new RequirementImpl(name,short_description,long_description,creation_date,last_modified_date);
 	                   p.create(tmp);
+	                   if(parent != null){
+	                	   tmp.setIsChild(true);
+	                	   p.updateRequirement(tmp);
+	                	   setRelation(parent, tmp.getId());
+	                   }
 	                            
 	              }
 	            file.close();
@@ -121,5 +130,13 @@ public class Import_Excel_Handler {
 				e.printStackTrace();
 				}
 			}
-		
+	    
+	    private void setRelation(String parent, int id){
+	    	for(Requirement req : p.getAll())
+	    		if(req.getName().equals(parent)){
+	    			req.setChild(id);
+	    			p.updateRequirement(req);
+	    		}
+	    }
+	    
 }

@@ -1,6 +1,7 @@
 package com.btc.acLabs.bl.dmos;
 
 import java.util.Date;
+import java.util.List;
 
 public interface Requirement {
 	String getName();
@@ -21,4 +22,16 @@ public interface Requirement {
 	void setLongDescription(String newLongDescription);
 	
 	void setLastModifiedDate();
+	
+	int getId();
+	
+	void setChild(int id);
+	
+	void setIsChild(boolean set);
+	
+	boolean getIsChild();
+	
+	List<Integer> getChilds();
+	
+	boolean removeChild(int id);
 }

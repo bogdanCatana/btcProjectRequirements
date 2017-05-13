@@ -88,7 +88,8 @@ public class Export_Excel_Handler {
 				    		Cell sixthcell=detailsrow.createCell(5);
 				    		sixthcell.setCellValue("Last modified Date");
 				    		
-				    		
+				    		Cell seventhcell=detailsrow.createCell(6);
+				    		seventhcell.setCellValue("Parent");
 				    		
 				    		
 				    		int rownum=1;
@@ -114,6 +115,12 @@ public class Export_Excel_Handler {
 				    			
 				    			Cell last_modified_date_cell=row.createCell(cellnum++);
 				    			last_modified_date_cell.setCellValue(list.get(i).getLastModifiedDate().toLocaleString());
+				    							    			
+				    			Cell parent_cell=row.createCell(cellnum++);
+				    			for(Requirement idxReq : list)
+				    				for(Integer idxChild : idxReq.getChilds())
+				    					if(list.get(i).getId() == idxChild)
+				    							parent_cell.setCellValue(idxReq.getName());
 				    		}
 				    		workbook.write(out);
 				    		out.close();

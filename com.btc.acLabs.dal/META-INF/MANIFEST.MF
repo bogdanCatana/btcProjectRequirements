@@ -12,5 +12,6 @@ Import-Package: com.btc.acLabs.bl.dmos,
  com.btc.acLabs.bl.services,
  javax.persistence,
  org.osgi.service.component.annotations
-Service-Component: OSGI-INF/com.btc.acLabs.dal.repository.RequirementRepositoryImpl.xml
+Service-Component: OSGI-INF/com.btc.acLabs.dal.repository.RequirementRepositoryImpl.xml,
+ OSGI-INF/com.btc.acLabs.dal.repository.UserRepositoryImpl.xml
 Bundle-ActivationPolicy: lazy

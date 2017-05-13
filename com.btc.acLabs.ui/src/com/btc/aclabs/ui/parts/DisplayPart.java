@@ -74,7 +74,7 @@ public class DisplayPart {
 				}
 				
 				if(txtInput.getText().equals(""))
-					fillListView(fillList);
+					refreshListView(fillList);
 			}
 		});
 		txtInput.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
@@ -92,7 +92,7 @@ public class DisplayPart {
 		listView = new List(parent, SWT.BORDER | SWT.MULTI | SWT.V_SCROLL);
 		listView.setLayoutData(gridData);
 		
-		fillListView(fillList);
+		refreshListView(fillList);
 		/* 
 		 * this should not be the only way to update the list because on the very long
 		 * ones this is inefficient
@@ -102,7 +102,7 @@ public class DisplayPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				fillListView(fillList);
+				refreshListView(fillList);
 			}
 			
 			@Override
@@ -198,7 +198,7 @@ public class DisplayPart {
 							editable.setLongDescription(long_description_field.getText());
 							editable.setLastModifiedDate();
 							reqDataBase.updateRequirement(editable);
-							fillListView(fillList);
+							refreshListView(fillList);
 							 
 						 }
 					}
@@ -209,8 +209,7 @@ public class DisplayPart {
 	}
 	
 	//private method for filling the list, also used for refreshing
-	private void fillListView(java.util.List<Requirement> fillList){
-		//reqDataBase= PersistenceUtility.getInstance();
+	private void refreshListView(java.util.List<Requirement> fillList){
 		fillList=reqDataBase.getAll();
 		listView.removeAll();
 		for(Requirement idx : fillList){
@@ -226,7 +225,7 @@ public class DisplayPart {
 		for(Requirement i:fillList)
 			if(name.equals(i.getName()))
 				reqDataBase.deleteRequirement(i);	
-		fillListView(fillList);
+		refreshListView(fillList);
 		deleteReqButton.setEnabled(false);
 		txtInput.setText("");
 	}

@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.eclipse.e4.ui.model.application.MApplication;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -17,6 +19,8 @@ import org.eclipse.swt.widgets.Text;
 public class LoginDialog extends TitleAreaDialog{
 	private Text textUsername;
     private Text textPassword;
+    private String user;
+    private String pass;
  
     @Inject
     MApplication application;
@@ -47,16 +51,48 @@ public class LoginDialog extends TitleAreaDialog{
         textUsername = new Text(container, SWT.BORDER);
         textUsername.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
  
+ 
         new Label(container, SWT.NULL).setText("Password");
         textPassword = new Text(container, SWT.PASSWORD | SWT.BORDER);
         textPassword.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        
+        textUsername.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				user=textUsername.getText();
+				
+				
+			}
+		});
+        textPassword.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				pass=textPassword.getText();
+				
+			}
+		});
  
         return area;
     }
+    
+ 
  
     @Override
     protected Point getInitialSize() {
         return new Point(500, 300);
     }
+    
+    public String getUser()
+    {
+    	return user;
+    }
+    public String getPass()
+    {
+    	return pass;
+    }
+    
+  
  
 }

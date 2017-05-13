@@ -10,7 +10,8 @@ Import-Package: com.btc.acLabs.bl.dmos,
 Require-Bundle: org.eclipse.osgi.services,
  org.eclipse.e4.core.di.annotations
 Bundle-ActivationPolicy: lazy
-Service-Component: OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementServiceImpl.xml
+Service-Component: OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementServiceImpl.xml,
+ OSGI-INF/com.btc.acLabs.bl.internal.services.UserServiceImpl.xml
 Export-Package: com.btc.acLabs.bl.internal.dmos,
  com.btc.acLabs.bl.internal.repository,
  com.btc.acLabs.bl.internal.services

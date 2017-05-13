@@ -9,16 +9,12 @@
             name="com.btc.acLabs.ui"
             application="org.eclipse.e4.ui.workbench.swt.E4Application">
          <property
-               name="applicationCSS"
-               value="platform:/plugin/com.btc.acLabs.ui/css/default.css">
-         </property>
-         <property
                name="appName"
                value="com.btc.acLabs.ui">
          </property>
          <property
-               name="lifeCycleURL"
-               value="bundleclass://com.btc.aclabs.login.LogIn">
+               name="lifeCycleURI"
+               value="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.login.E4LifeCycle">
          </property>
       </product>
    </extension>

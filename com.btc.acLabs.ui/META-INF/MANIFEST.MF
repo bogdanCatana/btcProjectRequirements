@@ -32,10 +32,11 @@ Bundle-ClassPath: lib/commons-codec-1.10.jar,
  lib/xmlbeans-2.6.0.jar,
  .,
  lib/objectdb.jar
-Bundle-Activator: com.btc.aclabs.login.LogIn
+Bundle-Activator: com.btc.aclabs.login.Activator
 Export-Package: javax.persistence
 Import-Package: com.btc.acLabs.bl.dmos,
  com.btc.acLabs.bl.internal.dmos,
  com.btc.acLabs.bl.internal.repository,
  com.btc.acLabs.bl.internal.services,
  com.btc.acLabs.bl.services
+Bundle-ActivationPolicy: lazy

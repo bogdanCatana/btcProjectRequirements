@@ -119,11 +119,11 @@ public class Import_Excel_Handler {
 					} else {
 						sameName = true;
 					}
-
+					
 				}
 				file.close();
 				workbook.close();
-
+				
 				if (sameName == true) {
 					messageBox = new MessageBox(shell, SWT.ICON_INFORMATION | SWT.OK);
 					messageBox.setText("Warning");
@@ -132,7 +132,8 @@ public class Import_Excel_Handler {
 					sameName = false;
 				}
 			}
-
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

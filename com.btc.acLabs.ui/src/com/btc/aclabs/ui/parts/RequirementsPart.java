@@ -151,7 +151,7 @@ public class RequirementsPart {
 				// TODO Auto-generated method stub
 				Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
 						textLongDescription.getText());
-				reqDataBase.create(temp.getName(), temp.getShortDescription(), temp.getLongDescription());
+				reqDataBase.create(temp);
 				if (comboDropDown.getText() != "") {
 					setRelation(comboDropDown.getText(), temp.getId());
 					temp.setIsChild(true);
@@ -180,7 +180,7 @@ public class RequirementsPart {
 	//add on "enter" key - only on long description
 	private void enterAsAddEvent(TraverseEvent e, Requirement temp) {
 		if (e.keyCode == SWT.CR) {
-			reqDataBase.create(temp.getName(), temp.getShortDescription(), temp.getLongDescription());
+			reqDataBase.create(temp);
 			fillDropDown();
 			setEmptyTexts();
 		}

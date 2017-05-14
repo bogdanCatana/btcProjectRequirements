@@ -44,19 +44,19 @@ public class LoginDialog extends TitleAreaDialog{
     protected Control createDialogArea(Composite parent) {
         Composite area = (Composite) super.createDialogArea(parent);
  
-        System.out.println(application);
- 
         Composite container = new Composite(area, SWT.NULL);
         container.setLayout(new GridLayout(2, false));
         container.setLayoutData(new GridData(GridData.FILL_BOTH));
  
         new Label(container, SWT.NULL).setText("Username");
         textUsername = new Text(container, SWT.BORDER);
+        textUsername.setMessage("Enter username...");
         textUsername.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
  
  
         new Label(container, SWT.NULL).setText("Password");
         textPassword = new Text(container, SWT.PASSWORD | SWT.BORDER);
+        textPassword.setMessage("Enter password...");
         textPassword.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         
         textUsername.addModifyListener(new ModifyListener() {
@@ -92,6 +92,7 @@ public class LoginDialog extends TitleAreaDialog{
 		loginButton=createButton(parent, IDialogConstants.OK_ID, "Login", true);
         loginButton.setEnabled(false);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
+		
 	}
  
     @Override

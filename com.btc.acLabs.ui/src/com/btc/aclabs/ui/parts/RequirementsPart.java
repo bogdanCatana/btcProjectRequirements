@@ -1,6 +1,5 @@
 package com.btc.aclabs.ui.parts;
 
-
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
@@ -28,7 +27,6 @@ import com.btc.acLabs.bl.internal.dmos.RequirementImpl;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
 import com.btc.acLabs.bl.services.RequirementService;
 
-
 public class RequirementsPart {
 	// main shell
 	// labels, texts and buttons for adding requirements
@@ -47,6 +45,7 @@ public class RequirementsPart {
 	// for subreq adding
 	private Combo comboDropDown;
 	private Label labelSubReq;
+	private MessageBox messageBox;
 	@Inject
 	private RequirementService reqDataBase;
 
@@ -105,13 +104,21 @@ public class RequirementsPart {
 			public void keyTraversed(TraverseEvent e) {
 				// TODO Auto-generated method stub
 				if (textName.getText() != "") {
-					Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
-							textLongDescription.getText());
-					enterAsAddEvent(e, temp);
-					if (comboDropDown.getText() != "") {
-						setRelation(comboDropDown.getText(), temp.getId());
-						temp.setIsChild(true);
-						reqDataBase.updateRequirement(temp);
+					if (!alreadyExists(textName.getText())) {
+						Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
+								textLongDescription.getText());
+						enterAsAddEvent(e, temp);
+						if (comboDropDown.getText() != "") {
+							setRelation(comboDropDown.getText(), temp.getId());
+							temp.setIsChild(true);
+							reqDataBase.updateRequirement(temp);
+						}
+					}
+					else{
+						messageBox = new MessageBox(parent.getShell(), SWT.ICON_INFORMATION | SWT.OK);
+		            	messageBox.setText("Warning");
+		            	messageBox.setMessage("One or more requirements have been already added!");
+		            	messageBox.open();
 					}
 				}
 			}
@@ -119,7 +126,7 @@ public class RequirementsPart {
 
 		labelSubReq.setText("Subrequirement of:");
 		comboDropDown.setLayoutData(gridData);
-		//it refreshes on click
+		// it refreshes on click
 		comboDropDown.addMouseListener(new MouseListener() {
 
 			@Override
@@ -149,16 +156,22 @@ public class RequirementsPart {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
-				Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
-						textLongDescription.getText());
-				reqDataBase.create(temp);
-				if (comboDropDown.getText() != "") {
-					setRelation(comboDropDown.getText(), temp.getId());
-					temp.setIsChild(true);
-					reqDataBase.updateRequirement(temp);
+				if (!alreadyExists(textName.getText())) {
+					Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
+							textLongDescription.getText());
+					reqDataBase.create(temp);
+					if (comboDropDown.getText() != "") {
+						setRelation(comboDropDown.getText(), temp.getId());
+						temp.setIsChild(true);
+						reqDataBase.updateRequirement(temp);
+					}
+					setEmptyTexts();
+				} else {
+					messageBox = new MessageBox(parent.getShell(), SWT.ICON_INFORMATION | SWT.OK);
+					messageBox.setText("Warning");
+					messageBox.setMessage("One or more requirements have been already added!");
+					messageBox.open();
 				}
-				setEmptyTexts();
-
 			}
 
 			@Override
@@ -177,7 +190,7 @@ public class RequirementsPart {
 		}
 	}
 
-	//add on "enter" key - only on long description
+	// add on "enter" key - only on long description
 	private void enterAsAddEvent(TraverseEvent e, Requirement temp) {
 		if (e.keyCode == SWT.CR) {
 			reqDataBase.create(temp);
@@ -192,7 +205,7 @@ public class RequirementsPart {
 		textShortDescription.setText("");
 	}
 
-	//sets child-parent relationship
+	// sets child-parent relationship
 	private boolean setRelation(String reqName, int id) {
 		for (Requirement idx : reqDataBase.getAll()) {
 			if (idx.getName().equals(reqName)) {
@@ -202,6 +215,13 @@ public class RequirementsPart {
 				return true;
 			}
 		}
+		return false;
+	}
+
+	public boolean alreadyExists(String n) {
+		for (Requirement req : reqDataBase.getAll())
+			if (req.getName().equals(n))
+				return true;
 		return false;
 	}
 

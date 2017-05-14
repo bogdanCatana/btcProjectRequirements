@@ -1,6 +1,5 @@
 package com.btc.aclabs.ui.parts;
 
-
 import java.util.ConcurrentModificationException;
 
 import javax.annotation.PostConstruct;
@@ -26,10 +25,10 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 
 import com.btc.acLabs.bl.dmos.Requirement;
-import com.btc.acLabs.bl.internal.repository.RequirementRepository;
 import com.btc.acLabs.bl.services.RequirementService;
 
 import org.eclipse.swt.widgets.List;
+import org.eclipse.swt.widgets.MessageBox;
 
 public class DisplayPart {
 	// text field for searching
@@ -183,7 +182,7 @@ public class DisplayPart {
 								"Long Description", long_description_field };
 						int result = JOptionPane.showConfirmDialog(null, req_edit, "EDIT",
 								JOptionPane.OK_CANCEL_OPTION);
-						String req_name = listView.getItem(listView.getSelectionIndex());
+						String req_name = listView.getItem(listView.getSelectionIndex()).trim();
 
 						if (result == JOptionPane.OK_OPTION) {
 							Requirement editable = null;
@@ -191,12 +190,22 @@ public class DisplayPart {
 							for (Requirement i : fillList)
 								if (req_name.equals(i.getName()))
 									editable = i;
-							editable.setName(name_field.getText());
-							editable.setShortDescription(short_description_field.getText());
-							editable.setLongDescription(long_description_field.getText());
-							editable.setLastModifiedDate();
-							reqDataBase.updateRequirement(editable);
-							fillListView();
+							if (!alreadyExists(name_field.getText())) {
+								if (!name_field.getText().isEmpty() && name_field.getText() != null) {
+									editable.setName(name_field.getText());
+									editable.setShortDescription(short_description_field.getText());
+									editable.setLongDescription(long_description_field.getText());
+									editable.setLastModifiedDate();
+									reqDataBase.updateRequirement(editable);
+									fillListView();
+								}
+							}
+							else{
+								MessageBox messageBox = new MessageBox(parent.getShell(), SWT.ICON_INFORMATION);
+								messageBox.setText("Warning");
+								messageBox.setMessage("There already is a requirement with this name");
+								messageBox.open();
+							}
 
 						}
 					}
@@ -206,7 +215,7 @@ public class DisplayPart {
 		});
 	}
 
-	//returns a requirement with a specific id
+	// returns a requirement with a specific id
 	private Requirement reqById(int id) {
 		for (Requirement r : reqDataBase.getAll())
 			if (r.getId() == id)
@@ -214,7 +223,7 @@ public class DisplayPart {
 		return null;
 	}
 
-	//prints spaces for hierarchy
+	// prints spaces for hierarchy
 	private String tab(int level) {
 		String ret = "   ";
 		for (int i = 0; i < level; ++i)
@@ -222,16 +231,16 @@ public class DisplayPart {
 		return ret;
 	}
 
-	//add childs to the listView, recursive
+	// add childs to the listView, recursive
 	private void addChilds(Requirement req, int level) {
 		if (req.getChilds().size() == 0)
 			return;
 		if (req == null)
 			return;
 		for (Integer idx : req.getChilds()) {
-				Requirement current = reqById(idx);
-				listView.add(tab(level) + current.getName());
-				addChilds(current, level + 1);
+			Requirement current = reqById(idx);
+			listView.add(tab(level) + current.getName());
+			addChilds(current, level + 1);
 		}
 	}
 
@@ -251,7 +260,7 @@ public class DisplayPart {
 		deleteReqButton.setEnabled(false);
 	}
 
-	//updates the database after deleting, mainly the childs List
+	// updates the database after deleting, mainly the childs List
 	private void updateAfterDelete(int id) {
 		for (Requirement idx : reqDataBase.getAll()) {
 			if (idx.getChilds().size() != 0)
@@ -263,22 +272,23 @@ public class DisplayPart {
 		}
 	}
 
-	//recursive function for deleting childs, it goes from the youngest to the oldest
+	// recursive function for deleting childs, it goes from the youngest to the
+	// oldest
 	private void deleteChilds(Requirement i) {
 		if (i.getChilds().size() == 0)
-			return ;
+			return;
 		for (Integer iChild : i.getChilds()) {
-			try{
+			try {
 				deleteChilds(reqById(iChild));
 				reqDataBase.deleteRequirement(reqById(iChild));
 				updateAfterDelete(iChild);
-			} catch(ConcurrentModificationException e){
-				System.out.println("ceva" );
+			} catch (ConcurrentModificationException e) {
+				System.out.println("ceva");
 				e.printStackTrace(System.out);
 			}
 		}
 	}
-	
+
 	private void deleteReq() {
 		fillList = reqDataBase.getAll();
 		String name = listView.getItem(listView.getSelectionIndex());
@@ -293,6 +303,13 @@ public class DisplayPart {
 		fillListView();
 		deleteReqButton.setEnabled(false);
 		txtInput.setText("");
+	}
+
+	public boolean alreadyExists(String n) {
+		for (Requirement req : reqDataBase.getAll())
+			if (req.getName().equals(n))
+				return true;
+		return false;
 	}
 
 	@Persist

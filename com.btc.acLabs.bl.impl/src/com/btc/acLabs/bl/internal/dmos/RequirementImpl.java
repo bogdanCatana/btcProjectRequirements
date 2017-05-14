@@ -1,6 +1,7 @@
 package com.btc.acLabs.bl.internal.dmos;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -113,11 +114,13 @@ public class RequirementImpl implements Requirement {
 	}
 	
 	public boolean removeChild(int id){
-		for(Integer idx : childs)
-			if(idx == id){
-				childs.remove(childs.indexOf(id));
+		Iterator<Integer> it = childs.iterator();
+		while(it.hasNext()){
+			if(it.next() == id){
+				it.remove();
 				return true;
 			}
+		}
 		return false;
 	}
 	

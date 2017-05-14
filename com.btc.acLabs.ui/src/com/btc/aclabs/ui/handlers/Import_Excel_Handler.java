@@ -114,7 +114,7 @@ public class Import_Excel_Handler {
 	                }
 	                   Requirement tmp=new RequirementImpl(name,short_description,long_description,creation_date,last_modified_date);
 	                   p.create(tmp);
-	                   if(parent != null){
+	                   if(parent != null && parent != ""){
 	                	   tmp.setIsChild(true);
 	                	   p.updateRequirement(tmp);
 	                	   setRelation(parent, tmp.getId());

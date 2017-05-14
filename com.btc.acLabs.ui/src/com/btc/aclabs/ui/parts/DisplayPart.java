@@ -1,10 +1,14 @@
 package com.btc.aclabs.ui.parts;
 
 
+import java.util.ConcurrentModificationException;
+
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import org.eclipse.e4.ui.di.Persist;
 import org.eclipse.e4.ui.model.application.ui.MDirtyable;
@@ -154,6 +158,21 @@ public class DisplayPart {
 				if (listView.isSelected(listView.getSelectionIndex()) == true) {
 
 					if (e.count == 2) {
+						try {
+							UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+						} catch (ClassNotFoundException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (InstantiationException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (IllegalAccessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (UnsupportedLookAndFeelException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						JTextField name_field = new JTextField();
 						name_field.setEditable(true);
 						JTextField short_description_field = new JTextField();
@@ -249,9 +268,14 @@ public class DisplayPart {
 		if (i.getChilds().size() == 0)
 			return ;
 		for (Integer iChild : i.getChilds()) {
-			deleteChilds(reqById(iChild));
-			reqDataBase.deleteRequirement(reqById(iChild));
-			updateAfterDelete(iChild);
+			try{
+				deleteChilds(reqById(iChild));
+				reqDataBase.deleteRequirement(reqById(iChild));
+				updateAfterDelete(iChild);
+			} catch(ConcurrentModificationException e){
+				System.out.println("ceva" );
+				e.printStackTrace(System.out);
+			}
 		}
 	}
 	

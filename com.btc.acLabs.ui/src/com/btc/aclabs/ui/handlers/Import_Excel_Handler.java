@@ -63,6 +63,8 @@ public class Import_Excel_Handler {
 							p.clearDataBase();
 						if(option==2)
 							return;
+						if(option==JOptionPane.CLOSED_OPTION)
+							return;
 						
 					}
 				

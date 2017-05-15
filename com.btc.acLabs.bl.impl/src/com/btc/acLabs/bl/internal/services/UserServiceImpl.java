@@ -21,9 +21,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void create(String name, String password) {
+	public void create(String name, String password,String firstName,String lastName,String companyName) {
 		System.out.println("Creating user...");
-		UserImpl new_user=new UserImpl(name,password);
+		UserImpl new_user=new UserImpl(name,password,firstName,lastName,companyName);
 		userRepository.create(new_user);
 		
 		

@@ -12,7 +12,6 @@
           <children xsi:type="basic:PartStack" xmi:id="_iYA54B9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.partstack.0">
             <children xsi:type="basic:Part" xmi:id="_jHufkB9WEeewQrYJ8IgHsg" elementId="com.btc.aclabs.ui.part.addnewrequirements" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.RequirementsPart" label="Add New Requirement"/>
             <children xsi:type="basic:Part" xmi:id="_tJqWYCH6EeeYmr1VUZUqAA" elementId="com.btc.aclabs.ui.part.requirementsdetails" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.DetailsPart" label="Requirement Details"/>
-            <children xsi:type="basic:Part" xmi:id="_PdWMYDfQEeem3s7TucNWLw" elementId="com.btc.aclabs.ui.part.users" contributionURI="bundleclass://com.btc.acLabs.ui/com.btc.aclabs.ui.parts.UsersPart" label="Users"/>
           </children>
         </children>
       </children>

@@ -1,5 +1,7 @@
 package com.btc.acLabs.bl.internal.dmos;
 
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,11 +19,23 @@ public class UserImpl implements User {
 	private String name; 
 	@Basic
 	private String password;
+	@Basic
+	private String firstName;
+	@Basic
+	private String lastName;
+	@Basic 
+	private String companyName;
+	@Basic
+	private Date joinDate;
 	
-	public UserImpl(String name,String password)
+	public UserImpl(String name,String password,String firstName,String lastName,String companyName)
 	{
 		this.name=name;
 		this.password=password;
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.companyName=companyName;
+		this.joinDate=new Date();
 	}
 
 	@Override

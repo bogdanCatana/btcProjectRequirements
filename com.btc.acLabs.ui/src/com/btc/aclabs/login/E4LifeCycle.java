@@ -40,19 +40,22 @@ public class E4LifeCycle {
 	        OpenDialog open_dialog=new OpenDialog(shell);
 	        LoginDialog dialog = new LoginDialog(shell);
 			if(userService.getAll().isEmpty())
-				userService.create("admin", "admin");
+				userService.create("admin", "admin","Admin","Admin","BTC");
 			 usersList =userService.getAll();
 			ContextInjectionFactory.inject(open_dialog, workbenchContext);
 	        ContextInjectionFactory.inject(dialog, workbenchContext);
 	        boolean ok=true;
 	        int x=0;
+	        int open_dialog_var=open_dialog.open();
 	       
-	        if(open_dialog.open()!=Window.OK)
+	        if(open_dialog_var!=Window.OK)
 	        {
 	        	System.exit(0);
 	        }
 	        else
 	        {
+	        	
+	        
 	        if(dialog.open() != Window.OK){
 	            // close application
 	            System.exit(0);
@@ -64,7 +67,7 @@ public class E4LifeCycle {
 	        	 while(ok!=false)
 	 	        {
 		 	        ok=true;
-		 	    
+		 	        usersList=userService.getAll();
 		 	        for(User i:usersList)
 		 	        	if(dialog.getUser().equals(i.getName())==true && dialog.getPass().equals(i.getPassword())==true){
 		 	        		

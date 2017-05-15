@@ -33,10 +33,11 @@ Bundle-ClassPath: lib/commons-codec-1.10.jar,
  .,
  lib/objectdb.jar
 Bundle-Activator: com.btc.aclabs.login.Activator
-Export-Package: javax.persistence
+Export-Package: javax.persistence,
+ javax.persistence.metamodel,
+ org.apache.poi,
+ org.apache.poi.ss.usermodel,
+ org.apache.poi.xssf.usermodel
 Import-Package: com.btc.acLabs.bl.dmos,
- com.btc.acLabs.bl.internal.dmos,
- com.btc.acLabs.bl.internal.repository,
- com.btc.acLabs.bl.internal.services,
  com.btc.acLabs.bl.services
 Bundle-ActivationPolicy: lazy

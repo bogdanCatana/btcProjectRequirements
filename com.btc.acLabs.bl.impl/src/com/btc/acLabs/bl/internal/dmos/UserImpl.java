@@ -14,14 +14,16 @@ public class UserImpl implements User {
 	@GeneratedValue
 	private int id;
 	@Basic
-	private String name; 
+	private String name;
 	@Basic
 	private String password;
-	
-	public UserImpl(String name,String password)
-	{
-		this.name=name;
-		this.password=password;
+
+	protected UserImpl() {
+	}
+
+	public UserImpl(String name, String password) {
+		this.name = name;
+		this.password = password;
 	}
 
 	@Override
@@ -31,9 +33,7 @@ public class UserImpl implements User {
 
 	@Override
 	public String getPassword() {
-	
 		return password;
 	}
-	
-	
+
 }

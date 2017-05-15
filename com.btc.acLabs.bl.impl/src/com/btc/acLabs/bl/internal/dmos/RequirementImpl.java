@@ -101,6 +101,11 @@ public class RequirementImpl implements Requirement {
 		return id;
 	}
 	
+	@Override
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setIsChild(boolean set){
 		isChild = set;
 	}
@@ -127,4 +132,5 @@ public class RequirementImpl implements Requirement {
 	public String toString(){
 		return "Name:" + name + "\nShort Description:\n" + shortDescription + "\nLong Description: " + longDescription + "\nCreation Date: " + creationDate + "\nLast Modified Date: " + lastModifiedDate;
 	}
+
 }

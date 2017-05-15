@@ -8,7 +8,6 @@ import com.btc.acLabs.bl.dmos.Requirement;
 import com.btc.acLabs.bl.internal.repository.RequirementRepository;
 import com.btc.acLabs.dal.utility.PersistenceUtility;
 
-@Component
 public class RequirementRepositoryImpl implements RequirementRepository {
 
 	@Override

@@ -8,7 +8,6 @@ import com.btc.acLabs.bl.dmos.User;
 import com.btc.acLabs.bl.internal.repository.UserRepository;
 import com.btc.acLabs.dal.utility.LoginUtility;
 
-@Component
 public class UserRepositoryImpl implements UserRepository {
 
 	@Override

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.btc.acLabs.bl.internal.services.ExcelServiceImpl">
+   <service>
+      <provide interface="com.btc.acLabs.bl.services.ExcelService"/>
+   </service>
+   <reference bind="setRequirementFactory" cardinality="1..1" interface="com.btc.acLabs.bl.services.RequirementFactory" name="RequirementFactory" policy="static"/>
+   <reference bind="setRequirementService" cardinality="1..1" interface="com.btc.acLabs.bl.services.RequirementService" name="RequirementService" policy="static"/>
+   <implementation class="com.btc.acLabs.bl.internal.services.ExcelServiceImpl"/>
+</scr:component>

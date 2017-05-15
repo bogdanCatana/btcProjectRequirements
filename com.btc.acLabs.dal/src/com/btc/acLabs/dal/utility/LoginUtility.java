@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import com.btc.acLabs.bl.dmos.User;
+import com.btc.acLabs.bl.internal.dmos.UserImpl;
 
 
 public class LoginUtility {
@@ -36,6 +37,7 @@ public class LoginUtility {
 	}
 
 	public List<User> readAll() {
+		em.getMetamodel().entity(UserImpl.class);
 		List<User> users = em.createQuery("SELECT u FROM com.btc.acLabs.bl.internal.dmos.UserImpl u").getResultList();
 		return users;
 	}

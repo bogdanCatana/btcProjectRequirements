@@ -23,8 +23,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 import com.btc.acLabs.bl.dmos.Requirement;
-import com.btc.acLabs.bl.internal.dmos.RequirementImpl;
-import com.btc.acLabs.bl.internal.repository.RequirementRepository;
+import com.btc.acLabs.bl.services.RequirementFactory;
 import com.btc.acLabs.bl.services.RequirementService;
 
 public class RequirementsPart {
@@ -48,6 +47,8 @@ public class RequirementsPart {
 	private MessageBox messageBox;
 	@Inject
 	private RequirementService reqDataBase;
+	@Inject
+	private RequirementFactory requirementFactory;
 
 	@PostConstruct
 	public void createComposite(Composite parent) {
@@ -105,7 +106,7 @@ public class RequirementsPart {
 				// TODO Auto-generated method stub
 				if (textName.getText() != "") {
 					if (!alreadyExists(textName.getText())) {
-						Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
+						Requirement temp = requirementFactory.create(textName.getText(), textShortDescription.getText(),
 								textLongDescription.getText());
 						enterAsAddEvent(e, temp);
 						if (comboDropDown.getText() != "") {
@@ -157,7 +158,7 @@ public class RequirementsPart {
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				if (!alreadyExists(textName.getText())) {
-					Requirement temp = new RequirementImpl(textName.getText(), textShortDescription.getText(),
+					Requirement temp = requirementFactory.create(textName.getText(), textShortDescription.getText(),
 							textLongDescription.getText());
 					reqDataBase.create(temp);
 					if (comboDropDown.getText() != "") {

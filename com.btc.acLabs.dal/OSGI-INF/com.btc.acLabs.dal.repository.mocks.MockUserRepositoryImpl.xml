@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="com.btc.acLabs.dal.repository.mocks.MockUserRepositoryImpl">
+   <service>
+      <provide interface="com.btc.acLabs.bl.internal.repository.UserRepository"/>
+   </service>
+   <implementation class="com.btc.acLabs.dal.repository.mocks.MockUserRepositoryImpl"/>
+</scr:component>

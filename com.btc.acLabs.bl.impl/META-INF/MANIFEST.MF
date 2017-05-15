@@ -6,12 +6,17 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: com.btc.acLabs.bl.dmos,
  com.btc.acLabs.bl.services,
- javax.persistence
+ javax.persistence,
+ org.apache.poi,
+ org.apache.poi.ss.usermodel,
+ org.apache.poi.xssf.usermodel
 Require-Bundle: org.eclipse.osgi.services,
  org.eclipse.e4.core.di.annotations
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementServiceImpl.xml,
- OSGI-INF/com.btc.acLabs.bl.internal.services.UserServiceImpl.xml
+ OSGI-INF/com.btc.acLabs.bl.internal.services.UserServiceImpl.xml,
+ OSGI-INF/com.btc.acLabs.bl.internal.services.ExcelServiceImpl.xml,
+ OSGI-INF/com.btc.acLabs.bl.internal.services.RequirementFactoryImpl.xml
 Export-Package: com.btc.acLabs.bl.internal.dmos,
  com.btc.acLabs.bl.internal.repository,
  com.btc.acLabs.bl.internal.services

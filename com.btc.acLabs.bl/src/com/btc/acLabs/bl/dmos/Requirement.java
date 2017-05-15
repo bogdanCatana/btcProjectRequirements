@@ -34,4 +34,6 @@ public interface Requirement {
 	List<Integer> getChilds();
 	
 	boolean removeChild(int id);
+	
+	void setId(int id);
 }
